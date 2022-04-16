@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+body
+{
+  background: darkslateblue;
+}
+.form-group
+{
+  padding: 5px;
+}
+
+.btn-primary
+{
+  padding: 5px;
+  background: green;
+  border: green;
+}
+
+.bg-grey
+{
+  background: gray;
+}
