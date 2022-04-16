@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../_services/auth.service";
 import {RegisterUser} from "../_models/register-user.model";
+import {passwordMatchValidator} from "../_validators/passwords-match.directive";
+import {passwordPatternCheck} from "../_validators/password-min-security.directive";
 
 
 @Component({
@@ -13,7 +15,9 @@ export class RegisterComponent implements OnInit {
   userTypes = ["STUDENT", "PROFESSOR", "USER"]
   registerForm: FormGroup = this.initializeForm();
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private fb: FormBuilder,
+              private authService: AuthService,
+              ) { }
 
   ngOnInit(): void {
 
@@ -23,13 +27,21 @@ export class RegisterComponent implements OnInit {
   {
 
     return this.fb.group({
-      firstname: '',
-      lastname: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required,
+                      Validators.minLength(5),
+                      passwordPatternCheck(/\d/, {hasNumber: true}),
+                      passwordPatternCheck(/[A-Z]/, {hasCapital: true}),
+                      passwordPatternCheck(/[a-z]/, {hasSmall: true}),
+                      passwordPatternCheck(/[ !@#$%^&*()_+\-={}\[\];':"|,.<>/?]/, {hasSpecial: true})]],
+      confirmPassword: ['', [Validators.required]],
       roleName: this.userTypes[0]
-    })
+    },
+      {
+        validators: [passwordMatchValidator]
+      });
 
   }
 
@@ -54,4 +66,34 @@ export class RegisterComponent implements OnInit {
 
     })
   }
+
+  get firstname()
+  {
+
+    return this.registerForm.get('firstname');
+
+  }
+
+  get lastname()
+  {
+
+    return this.registerForm.get('lastname');
+
+  }
+  get email()
+  {
+
+    return this.registerForm.get('email');
+
+  }
+  get password()
+  {
+
+    return this.registerForm.get('password');
+
+  }
+
+
+
+
 }

@@ -11,7 +11,9 @@
             <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
               <div class="row p-3">
+
                 <div class="col">
+                  <div class="form-group mb-4">
                   <label class="pb-3" for="firstname">Firstname</label>
                   <input
                     formControlName="firstname"
@@ -21,9 +23,15 @@
                     placeholder="Firstname"
 
                   />
-
+                  </div>
+                  <div *ngIf="(firstname?.errors?.['required']) && (firstname?.touched || firstname?.dirty)"
+                       class="alert alert-danger">
+                    Firstname is required.
+                  </div>
                 </div>
+
                 <div class="col">
+                  <div class="form-group mb-4">
                   <label class="pb-3" for="lastname">Lastname</label>
                   <input
                     formControlName="lastname"
@@ -33,8 +41,12 @@
                     placeholder="Lastname"
 
                   />
-
                 </div>
+                <div *ngIf="(lastname?.errors?.['required']) && (lastname?.touched || lastname?.dirty)"
+                     class="alert alert-danger">
+                  Lastname is required.
+                </div>
+              </div>
               </div>
 
               <div class="form-group mb-4">
@@ -48,6 +60,16 @@
 
                 />
               </div>
+              <div *ngIf="(email?.invalid) && (email?.dirty || email?.touched)"
+                   class="alert alert-danger">
+
+                <div *ngIf="email?.errors?.['required']">
+                  Email is required.
+                </div>
+                <div *ngIf="email?.errors?.['email']">
+                  Not an email format.
+                </div>
+              </div>
 
               <div class="form-group mb-4">
                 <label class="pb-3" for="password">Password</label>
@@ -59,6 +81,41 @@
                   placeholder="Password"
                 />
               </div>
+              <div *ngIf="(password?.invalid) && (password?.touched || password?.dirty)"
+                   class="alert alert-danger"
+              >
+                <div *ngIf="(password?.errors?.['required']) && (password?.dirty ||password?.touched)"
+                     class="myPassReq"
+                >
+                  Password is required.
+                </div>
+                <div *ngIf="(password?.errors?.['hasCapital']) && (password?.dirty ||password?.touched)"
+                     class="myPassReq"
+                >
+                  Password must contain at least one capital case.
+                </div>
+                <div *ngIf="(password?.errors?.['hasSmall']) && (password?.dirty ||password?.touched)"
+                     class="myPassReq"
+                >
+                  Password must contain at least one small case.
+                </div>
+                <div *ngIf="(password?.errors?.['hasSpecial']) && (password?.dirty ||password?.touched)"
+                     class="myPassReq"
+                >
+                  Password must contain at least one special character.
+                </div>
+                <div *ngIf="(password?.errors?.['minlength']) && (password?.dirty ||password?.touched)"
+                     class="myPassReq"
+                >
+                  Password must have at least 5 characters.
+                </div>
+
+              <div *ngIf="(password?.errors?.['hasNumber']) && (password?.dirty ||password?.touched)"
+                   class="myPassReq"
+              >
+                Password must have at least one number!
+              </div>
+              </div>
 
               <div class="form-group mb-4">
                 <label class="pb-3" for="confirm-pass">Confirm Password</label>
@@ -69,6 +126,11 @@
                   class="form-control"
                   placeholder="Confirm Password"
                 />
+              </div>
+
+              <div *ngIf="(registerForm.errors?.['notSamePasswords']) && (registerForm.touched || registerForm.dirty)"
+                   class="cross-validation-error-message alert alert-danger">
+                Passwords don't match!
               </div>
 
               <div class="form-group mb-4">
@@ -83,7 +145,6 @@
               </div>
 
               <button type="submit" class="px-3 btn btn-primary">Create Account</button>
-
 
             </form>
 
