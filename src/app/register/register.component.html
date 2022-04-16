@@ -8,12 +8,13 @@
             <div class="p-5">
               <h3>Register</h3>
             </div>
-            <form>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
               <div class="row p-3">
                 <div class="col">
                   <label class="pb-3" for="firstname">Firstname</label>
                   <input
+                    formControlName="firstname"
                     type="email"
                     id="firstname"
                     class="form-control"
@@ -25,6 +26,7 @@
                 <div class="col">
                   <label class="pb-3" for="lastname">Lastname</label>
                   <input
+                    formControlName="lastname"
                     type="email"
                     id="lastname"
                     class="form-control"
@@ -38,6 +40,7 @@
               <div class="form-group mb-4">
                 <label class="pb-3" for="username">Email</label>
                 <input
+                  formControlName="email"
                   type="email"
                   id="username"
                   class="form-control"
@@ -49,6 +52,7 @@
               <div class="form-group mb-4">
                 <label class="pb-3" for="password">Password</label>
                 <input
+                  formControlName="password"
                   type="text"
                   id="password"
                   class="form-control"
@@ -59,6 +63,7 @@
               <div class="form-group mb-4">
                 <label class="pb-3" for="confirm-pass">Confirm Password</label>
                 <input
+                  formControlName="confirmPassword"
                   type="text"
                   id="confirm-pass"
                   class="form-control"
@@ -68,10 +73,12 @@
 
               <div class="form-group mb-4">
                 <label class="pb-3" for="selectAccountType">Select Account Type</label>
-                <select class="form-select" id="selectAccountType">
-                  <option>Professor</option>
-                  <option>Student</option>
-                  <option>User</option>
+                <select
+                  class="form-select"
+                  id="selectAccountType"
+                  formControlName="roleName"
+                >
+                  <option *ngFor="let userType of userTypes">{{userType}}</option>
                 </select>
               </div>
 
