@@ -139,10 +139,32 @@
                   class="form-select"
                   id="selectAccountType"
                   formControlName="roleName"
+                  (change)="changeSelect($event)"
                 >
                   <option *ngFor="let userType of userTypes">{{userType}}</option>
                 </select>
               </div>
+
+
+              <div *ngIf="isStudent">
+              <div class="form-group mb-4">
+                <label class="pb-3" for="studentID">Student ID</label>
+                <input
+                  formControlName="studentID"
+                  type="text"
+                  id="studentID"
+                  class="form-control"
+                  placeholder="Student ID"
+                />
+              </div>
+              <div *ngIf="(studentID?.errors?.['required']) && (studentID?.touched || studentID?.dirty)"
+                   class="alert alert-danger"
+              >
+                Student ID is required.
+              </div>
+              </div>
+
+
 
               <button type="submit" class="px-3 btn btn-primary">Create Account</button>
 

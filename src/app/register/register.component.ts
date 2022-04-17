@@ -12,7 +12,8 @@ import {passwordPatternCheck} from "../_validators/password-min-security.directi
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  userTypes = ["STUDENT", "PROFESSOR", "USER"]
+  userTypes = ["USER", "STUDENT"];
+  isStudent: boolean = false;
   registerForm: FormGroup = this.initializeForm();
 
   constructor(private fb: FormBuilder,
@@ -37,7 +38,8 @@ export class RegisterComponent implements OnInit {
                       passwordPatternCheck(/[a-z]/, {hasSmall: true}),
                       passwordPatternCheck(/[ !@#$%^&*()_+\-={}\[\];':"|,.<>/?]/, {hasSpecial: true})]],
       confirmPassword: ['', [Validators.required]],
-      roleName: this.userTypes[0]
+      roleName: this.userTypes[0],
+      studentID: ['', Validators.required]
     },
       {
         validators: [passwordMatchValidator]
@@ -67,6 +69,11 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  changeSelect(event: any)
+  {
+    this.isStudent = event?.target?.value == 'STUDENT';
+  }
+
   get firstname()
   {
 
@@ -90,6 +97,13 @@ export class RegisterComponent implements OnInit {
   {
 
     return this.registerForm.get('password');
+
+  }
+
+  get studentID()
+  {
+
+    return this.registerForm.get('studentID');
 
   }
 
