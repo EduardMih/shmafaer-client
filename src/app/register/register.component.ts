@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../_services/auth.service";
-import {RegisterUser} from "../_models/register-user.model";
+import {RegisterUser} from "../_dtos/register-user.model";
 import {passwordMatchValidator} from "../_validators/passwords-match.directive";
 import {passwordPatternCheck} from "../_validators/password-min-security.directive";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -14,10 +15,15 @@ import {passwordPatternCheck} from "../_validators/password-min-security.directi
 export class RegisterComponent implements OnInit {
   userTypes = ["USER", "STUDENT"];
   isStudent: boolean = false;
+  isSuccessful: boolean = false;
+  successMessage: String = "";
+  errorMessage: String = "";
+  isError: boolean = false;
   registerForm: FormGroup = this.initializeForm();
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
+              private router: Router
               ) { }
 
   ngOnInit(): void {
@@ -44,7 +50,6 @@ export class RegisterComponent implements OnInit {
       {
         validators: [passwordMatchValidator]
       });
-
   }
 
   onSubmit(): void
@@ -55,16 +60,38 @@ export class RegisterComponent implements OnInit {
       this.registerForm.value.email,
       this.registerForm.value.password,
       this.registerForm.value.confirmPassword,
-      Array.of(this.registerForm.value.roleName)
+      this.registerForm.value.roleName,
+      this.registerForm.value.studentID
       )
 
     this.authService.register(newUser).subscribe({
-      next: data => {
-        console.log(data);
+      next:data => {
+        this.isSuccessful = true;
+        this.successMessage = `Congratulations ${data['firstname']} ${data['lastname']}! Your account was successfully created!`;
       },
       error: err => {
-        console.log("error" + err.error.message)
+        //console.log("aici")
+        console.log(err)
+        if (err.status == 400) {
+          this.isError = true;
+
+          if('Register' in err.error.errors)
+              this.errorMessage = err.error.errors['Register'];
+
+          else
+
+            this.errorMessage = JSON.stringify(err.error.errors)
+        }
+
+        else
+
+        {
+
+          this.router.navigate(['/error'])
+
+        }
       }
+
 
     })
   }
@@ -106,8 +133,4 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('studentID');
 
   }
-
-
-
-
 }

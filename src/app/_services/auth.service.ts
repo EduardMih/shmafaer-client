@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
-import {RegisterUser} from "../_models/register-user.model";
+import {RegisterUser} from "../_dtos/register-user.model";
 
 
 const httpOptions = {
@@ -31,7 +31,7 @@ export class AuthService {
     //newUser.roleName = Array.of(newUser.roleName);
     console.log(newUser)
 
-    return this.http.post(environment.BASE_API + "/user/registration",
+    return this.http.post(environment.BASE_API + "/register",
       newUser, httpOptions)
 
   }

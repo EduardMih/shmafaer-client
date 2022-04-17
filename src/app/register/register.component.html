@@ -3,12 +3,24 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-7">
         <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+
+          <div *ngIf="isSuccessful" class="card-body p-5 text-center text-success">
+            {{successMessage}}
+            <button routerLink="/login" class="btn btn-primary m-5 p-2">Go to Login</button>
+          </div>
+
+          <div *ngIf="!isSuccessful" class="card-body p-5 text-center">
+
+            <div *ngIf="isError" class="alert alert-danger">
+              {{errorMessage}}
+            </div>
+
+
 
             <div class="p-5">
               <h3>Register</h3>
             </div>
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <form *ngIf="!isSuccessful" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
               <div class="row p-3">
 
@@ -169,7 +181,6 @@
               <button type="submit" class="px-3 btn btn-primary">Create Account</button>
 
             </form>
-
           </div>
         </div>
       </div>
