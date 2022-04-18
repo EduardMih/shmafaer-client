@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
                       passwordPatternCheck(/[ !@#$%^&*()_+\-={}\[\];':"|,.<>/?]/, {hasSpecial: true})]],
       confirmPassword: ['', [Validators.required]],
       roleName: this.userTypes[0],
-      studentID: ['', Validators.required]
+      studentID: ['', []]
     },
       {
         validators: [passwordMatchValidator]
@@ -72,7 +72,8 @@ export class RegisterComponent implements OnInit {
       error: err => {
         //console.log("aici")
         console.log(err)
-        if (err.status == 400) {
+        if (err.status == 400)
+        {
           this.isError = true;
 
           if('Register' in err.error.errors)
@@ -81,6 +82,7 @@ export class RegisterComponent implements OnInit {
           else
 
             this.errorMessage = JSON.stringify(err.error.errors)
+
         }
 
         else
@@ -91,14 +93,28 @@ export class RegisterComponent implements OnInit {
 
         }
       }
-
-
     })
   }
 
   changeSelect(event: any)
   {
     this.isStudent = event?.target?.value == 'STUDENT';
+
+    console.log(this.isStudent)
+
+    if(this.isStudent)
+    {
+      this.registerForm.get('studentID')?.setValidators(Validators.required);
+      this.registerForm.get('studentID')?.updateValueAndValidity();
+    }
+
+    else
+    {
+
+      this.registerForm.get('studentID')?.clearValidators();
+      this.registerForm.get('studentID')?.updateValueAndValidity();
+
+    }
   }
 
   get firstname()

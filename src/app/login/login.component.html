@@ -8,6 +8,11 @@
             <div class="p-5">
               <h3>Login</h3>
             </div>
+
+            <div *ngIf="!isSuccessful" class="alert alert-danger">
+              Bad credentials!
+            </div>
+
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
               <div class="form-group mb-4">
@@ -52,8 +57,8 @@
               </div>
 
               <div class="col d-flex justify-content-between">
-                <button type="submit" class="px-3 btn btn-primary">Login</button>
-                <button type="button" class="px-3 btn btn-primary">Register</button>
+                <button [disabled]="!loginForm.valid" type="submit" class="px-3 btn btn-primary">Login</button>
+                <button routerLink="/register" type="button" class="px-3 btn btn-primary">Register</button>
               </div>
             </form>
 

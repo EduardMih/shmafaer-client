@@ -15,8 +15,6 @@
               {{errorMessage}}
             </div>
 
-
-
             <div class="p-5">
               <h3>Register</h3>
             </div>
@@ -157,7 +155,6 @@
                 </select>
               </div>
 
-
               <div *ngIf="isStudent">
               <div class="form-group mb-4">
                 <label class="pb-3" for="studentID">Student ID</label>
@@ -176,9 +173,7 @@
               </div>
               </div>
 
-
-
-              <button type="submit" class="px-3 btn btn-primary">Create Account</button>
+              <button [disabled]="!registerForm.valid" type="submit" class="px-3 btn btn-primary">Create Account</button>
 
             </form>
           </div>

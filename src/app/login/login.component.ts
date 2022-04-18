@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = this.initializeForm();
+  isSuccessful: boolean = true;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -35,11 +36,16 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe({
         next: data => {
-          console.log("YEEY JWT", data)
+          console.log(data.jwtToken)
         },
         error: err => {
-          console.log("Error", err.error.message)
-          this.router.navigate(['error']);
+          //console.log(err)
+          if((err.status == 401) && (err.error.Error == "Bad credentials"))
+            this.isSuccessful = false;
+
+          else
+
+              this.router.navigate(['error']);
   }
       })
   }
@@ -57,6 +63,4 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
 
   }
-
-
 }
