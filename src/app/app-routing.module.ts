@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {GeneralErrorPageComponent} from "./general-error-page/general-error-page.component";
+import {AddProjectComponent} from "./add-project/add-project.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'error', component: GeneralErrorPageComponent}
+  { path: 'error', component: GeneralErrorPageComponent },
+  { path: 'add-project', component: AddProjectComponent }
 ];
 
 @NgModule({

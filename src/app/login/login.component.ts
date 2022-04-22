@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void
   {
-    console.log(this.loginForm.value)
+    //console.log(this.loginForm.value)
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password)
       .subscribe({
         next: data => {
@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
           else
 
               this.router.navigate(['error']);
+
   }
       })
   }

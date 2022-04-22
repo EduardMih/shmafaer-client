@@ -1,0 +1,46 @@
+.add-project-form {
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field mat-label {
+  color: mediumpurple !important;
+}
+
+mat-form-field textarea, input
+{
+  color: white !important;
+  font-size: 20px !important;
+}
+
+mat-form-field.mat-form-field-should-float mat-label {
+  font-size: 17px;
+  color: mediumpurple !important;
+}
+
+input.mat-input-element, textarea.mat-input-element
+{
+  margin-top: 15px !important;
+}
+.mat-select
+{
+  margin-top: 20px !important;
+}
+
+button
+{
+  margin: 10px;
+}
+
+mat-stepper
+{
+  border-radius: 25px;
+}
+
+/* workaround for mat checkbox not wrapping long text*/
+/deep/ .mat-checkbox-layout {
+  white-space: normal !important;
+}
