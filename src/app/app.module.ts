@@ -23,6 +23,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatIconModule} from "@angular/material/icon";
+import { NavbarComponent } from './navbar/navbar.component';
+import {CdkTableModule} from "@angular/cdk/table";
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import {MatIconModule} from "@angular/material/icon";
     RegisterComponent,
     GeneralErrorPageComponent,
     AddProjectComponent,
+    NavbarComponent,
   ],
     imports: [
         BrowserModule,
@@ -53,6 +56,7 @@ import {MatIconModule} from "@angular/material/icon";
         MatAutocompleteModule,
         MatChipsModule,
         MatIconModule,
+        CdkTableModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

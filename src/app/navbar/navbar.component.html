@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">Navbar</a>
+    <button class="navbar-toggler"
+            type="button"
+            (click)="isCollapsed = !isCollapsed"
+            >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="nav" (click)="isCollapsed = true">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/nav">Link</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
