@@ -61,7 +61,7 @@
                 </form>
               </mat-step>
 
-              <mat-step [stepControl]="isResearchProj ? collaboratorsCtrl : coordinator">
+              <mat-step [stepControl]="isResearchProj ? collaboratorsCtrl : coordinatorCtrl">
                 <form>
 
                   <div *ngIf="!isResearchProj">
@@ -71,11 +71,12 @@
                              placeholder="Choose coordinator"
                              aria-label="Coordinator"
                              matInput
-                             [formControl]="coordinator"
-                             [matAutocomplete]="auto">
-                      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                        <mat-option *ngFor="let coordinator of filtered | async" [value]="coordinator">
-                          {{coordinator}}
+                             [formControl]="coordinatorCtrl"
+                             [matAutocomplete]="auto"
+                      >
+                      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayUser" (optionSelected)="selectedCoordinatorFct($event)">
+                        <mat-option *ngFor="let coordinator of filteredCoordinators | async" [value]="coordinator">
+                          {{coordinator.firstname}} {{coordinator.lastname}} ({{coordinator.email}})
                         </mat-option>
                       </mat-autocomplete>
                     </mat-form-field>
@@ -96,7 +97,7 @@
                           [value]="collaborator"
                           [selectable]="false"
                         >
-                          {{collaborator}}
+                          {{collaborator.email}}
                           <button matChipRemove>
                             <mat-icon>cancel</mat-icon>
                           </button>
@@ -108,14 +109,14 @@
                           [formControl]="collaboratorsCtrl"
                           [matAutocomplete]="auto"
                           [matChipInputFor]="chipList"
-                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                          (matChipInputTokenEnd)="add($event)"
+                          [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+                          <!-- (matChipInputTokenEnd)="add($event)"
+                          -->
 
-                        >
                       </mat-chip-list>
-                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedCollaboratorFct($event)" [displayWith]="displayUser">
                         <mat-option *ngFor="let collaborator of filteredCollaborators | async" [value]="collaborator">
-                          {{collaborator}}
+                          {{collaborator.firstname}} {{collaborator.lastname}} ({{collaborator.email}})
                         </mat-option>
                       </mat-autocomplete>
                     </mat-form-field>
