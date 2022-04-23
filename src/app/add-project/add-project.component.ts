@@ -5,6 +5,9 @@ import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {UserService} from "../_services/user.service";
 import {LiveSearchUserResponse} from "../_dtos/live-search-user-response.model";
+import {AddProjectRequest} from "../_dtos/add-project-request";
+import {ProjectService} from "../_services/project.service";
+import {Router} from "@angular/router";
 
 const PROFESSOR_ROLE = "PROFESSOR";
 
@@ -27,12 +30,18 @@ export class AddProjectComponent implements OnInit {
   collaboratorsCtrl = new FormControl("", [Validators.required]);
   agreeCtrl = new FormControl(false, [Validators.requiredTrue])
   isResearchProj: boolean = false;
+  isSuccessful: boolean = false;
+  requestMessage: string = "";
+  isSubmitted: boolean = false;
 
   // @ts-ignore
   @ViewChild('collaboratorInput') collaboratorInput: ElementRef<HTMLInputElement>;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
-    let resp;
+  constructor(private fb: FormBuilder,
+              private userService: UserService,
+              private projectService: ProjectService,
+              private router: Router
+  ) {
     this.firstFormGroup = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -144,8 +153,43 @@ export class AddProjectComponent implements OnInit {
 
   onSubmit(): void
   {
-    console.log(this.firstFormGroup.value, this.secondFormGroup.value, this.selectedCoordinator, this.selectedCollaborators)
+    let data: AddProjectRequest = {
+      title: this.firstFormGroup.value.title,
+      repoLink: this.firstFormGroup.value.repoLink,
+      description: this.firstFormGroup.value.description,
 
+      projectType: this.secondFormGroup.value.projectType,
+
+      // to be replaced with email from token
+      ownerEmail: "hamza.edw@gmail.com",
+
+      coordinatorEmail: this.selectedCoordinator?.email,
+
+      collaboratorsEmail: Array.from(this.selectedCollaborators, (user) => user.email)
+
+    }
+
+    this.isSubmitted = true;
+
+    this.projectService.addProject(data).subscribe({
+      next: value => {
+        this.isSuccessful = true;
+        this.requestMessage = value.message;
+      },
+      error: err => {
+        if(err.status == 400)
+        {
+          this.isSuccessful = false;
+          console.log(err)
+          this.requestMessage = err.error.errors.errorMessage;
+        }
+
+        else
+
+          this.router.navigate(['/error']);
+
+      }
+    });
   }
 
   displayUser(user: LiveSearchUserResponse): string

@@ -8,7 +8,15 @@
 
           <div class="card-body">
 
-            <mat-stepper linear #stepper>
+            <div class="alert alert-danger" *ngIf="isSubmitted && !isSuccessful">
+              {{requestMessage}}
+            </div>
+
+            <div class="alert alert-success" *ngIf="isSubmitted && isSuccessful">
+              {{requestMessage}}
+            </div>
+
+            <mat-stepper linear #stepper *ngIf="(!isSubmitted) || (isSubmitted && !isSuccessful)">
               <mat-step [stepControl]="firstFormGroup">
 
                 <form [formGroup]="firstFormGroup">
