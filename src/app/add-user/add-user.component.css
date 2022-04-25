@@ -1,0 +1,17 @@
+.myContainer
+{
+  position: relative !important;
+
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+mat-form-field, .alert
+{
+  width: 100%;
+}
+
+

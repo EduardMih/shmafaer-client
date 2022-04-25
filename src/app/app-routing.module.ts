@@ -6,6 +6,7 @@ import {GeneralErrorPageComponent} from "./general-error-page/general-error-page
 import {AddProjectComponent} from "./add-project/add-project.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.component";
+import {AddUserComponent} from "./add-user/add-user.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'error', component: GeneralErrorPageComponent },
   { path: 'add-project', component: AddProjectComponent },
   { path: 'nav', component:NavbarComponent },
-  { path: 'adminDashboard', component: AdminDashboardComponent}
+  { path: 'adminDashboard', component: AdminDashboardComponent },
+  { path: 'adminDashboard/addUser', component: AddUserComponent}
 ];
 
 @NgModule({

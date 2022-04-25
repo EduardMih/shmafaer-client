@@ -28,6 +28,9 @@ import {CdkTableModule} from "@angular/cdk/table";
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
+import { AddUserComponent } from './add-user/add-user.component';
+import { AllUsersComponent } from './all-users/all-users.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -39,31 +42,34 @@ import {MatListModule} from "@angular/material/list";
     AddProjectComponent,
     NavbarComponent,
     AdminDashboardComponent,
+    AddUserComponent,
+    AllUsersComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatBadgeModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatStepperModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    MatChipsModule,
-    MatIconModule,
-    CdkTableModule,
-    MatSidenavModule,
-    MatListModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatBadgeModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatStepperModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatChipsModule,
+        MatIconModule,
+        CdkTableModule,
+        MatSidenavModule,
+        MatListModule,
+        MatPaginatorModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

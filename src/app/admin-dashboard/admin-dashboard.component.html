@@ -3,11 +3,18 @@
     <mat-nav-list>
       <button mat-button matSubheader (click)="sidenav.toggle()">Admin Dashboard</button>
       <mat-divider></mat-divider>
-      <button mat-button class="menu-button">
-        <mat-icon>home</mat-icon>
-        <span>Home</span>
+
+      <button mat-button class="menu-button" (click)="setActiveComp(1)">
+        <mat-icon>person_add</mat-icon>
+        <span>Add User</span>
+      </button>
+
+      <button mat-button (click)="setActiveComp(2)">
+        <mat-icon>group</mat-icon>
+        <span>All users</span>
       </button>
     </mat-nav-list>
+
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -15,7 +22,10 @@
       <button mat-button class="toggle-btn" *ngIf="!sidenav.opened" (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-    Main
+
+      <app-add-user *ngIf="activeComp == 1"></app-add-user>
+      <app-all-users *ngIf="activeComp == 2"></app-all-users>
+
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
