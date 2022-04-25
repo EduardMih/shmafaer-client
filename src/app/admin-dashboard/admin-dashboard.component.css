@@ -1,0 +1,50 @@
+/*.mat-sidenav-content
+{
+  height: 100vh;
+  background: red;
+}
+*/
+
+mat-sidenav-container
+{
+  height: 90vh;
+  margin: 20px 20px 0;
+  border-radius: 15px;
+
+}
+
+
+mat-sidenav
+{
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px;
+  padding: 10px;
+}
+
+.content
+{
+  position: relative;
+  height: calc(90vh - 40px);
+  border-radius: 10px;
+  margin: 20px 20px 20px 32px;
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: red;
+
+}
+
+.toggle-btn
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5px;
+}
+
+
+

@@ -25,6 +25,9 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatIconModule} from "@angular/material/icon";
 import { NavbarComponent } from './navbar/navbar.component';
 import {CdkTableModule} from "@angular/cdk/table";
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
@@ -35,29 +38,32 @@ import {CdkTableModule} from "@angular/cdk/table";
     GeneralErrorPageComponent,
     AddProjectComponent,
     NavbarComponent,
+    AdminDashboardComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatBadgeModule,
-        MatInputModule,
-        MatCheckboxModule,
-        MatStepperModule,
-        MatSelectModule,
-        MatAutocompleteModule,
-        MatChipsModule,
-        MatIconModule,
-        CdkTableModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatBadgeModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatStepperModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatIconModule,
+    CdkTableModule,
+    MatSidenavModule,
+    MatListModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
