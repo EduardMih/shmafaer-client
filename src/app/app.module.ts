@@ -31,6 +31,7 @@ import {MatListModule} from "@angular/material/list";
 import { AddUserComponent } from './add-user/add-user.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         MatSidenavModule,
         MatListModule,
         MatPaginatorModule,
+        MatTableModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

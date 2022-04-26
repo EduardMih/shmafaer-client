@@ -47,5 +47,10 @@ mat-nav-list
   flex-direction: column;
 }
 
+app-all-users
+{
+  width: 100%;
+}
+
 
 
