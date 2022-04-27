@@ -7,7 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { GeneralErrorPageComponent } from './general-error-page/general-error-page.component';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,6 +34,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {AuthInterceptor} from "./_helpers/auth.interceptor";
 
 
 @NgModule({
@@ -76,7 +77,9 @@ import {MatDialogModule} from "@angular/material/dialog";
         MatTableModule,
         MatDialogModule
     ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

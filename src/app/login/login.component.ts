@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../_services/auth.service";
 import {Router} from "@angular/router";
+import {AuthTokenService} from "../_services/auth-token.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private router: Router
+              private router: Router,
+              private authTokenService: AuthTokenService
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +39,9 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: data => {
           console.log(data.jwtToken)
+          this.authTokenService.saveUserData(data)
+
+          this.router.navigate(["/adminDashboard"])
         },
         error: err => {
           //console.log(err)
