@@ -1,0 +1,19 @@
+.user-data
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.data-entry
+{
+  margin: 5px;
+  padding: 10px;
+  border: 1px whitesmoke solid;
+  border-radius: 15px;
+}
+section
+{
+  margin: 5px;
+}
+
+

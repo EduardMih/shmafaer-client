@@ -14,6 +14,8 @@ import {
   switchMap
 } from "rxjs";
 import {MatInput} from "@angular/material/input";
+import {MatDialog} from "@angular/material/dialog";
+import {EditUserDialogComponent} from "../edit-user-dialog/edit-user-dialog.component";
 
 @Component({
   selector: 'app-all-users',
@@ -30,7 +32,8 @@ export class AllUsersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   //@ViewChild('input') input!: MatInput;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -77,6 +80,17 @@ export class AllUsersComponent implements OnInit, AfterViewInit {
 
     //this.emailChange.next((event.target as HTMLInputElement).value as string);
     this.paginator.page.emit();
+
+  }
+
+  clickedRow(row: UserDetails)
+  {
+    console.log(row)
+    const dialogRef = this.dialog.open(EditUserDialogComponent, { data: row, width: '75%'});
+
+    dialogRef.afterClosed().subscribe(resut => {
+      console.log(resut)
+    })
 
   }
 }

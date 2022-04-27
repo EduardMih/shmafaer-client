@@ -1,0 +1,38 @@
+<div class="container">
+<h2 mat-dialog-title>Edit User</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="user-data">
+    <div class="data-entry">
+      Lastname: {{data.lastname}}
+    </div>
+    <div class="data-entry">
+      Firstname: {{data.firstname}}
+    </div>
+    <div class="data-entry">
+      Email: {{data.email}}
+    </div>
+    <div class="data-entry">
+      InstitutionalID: {{data.institutionalID}}
+    </div>
+    <div class="data-entry">
+      <h4>Roles</h4>
+      <p>Initial roles: {{data.roles}}</p>
+      <mat-divider></mat-divider>
+
+      <section [formGroup]="chooseRoles">
+        <p>Chose new roles:</p>
+        <p><mat-checkbox formControlName="ADMIN">ADMIN</mat-checkbox></p>
+        <p><mat-checkbox formControlName="PROFESSOR">PROFESSOR</mat-checkbox></p>
+        <p><mat-checkbox formControlName="STUDENT">STUDENT</mat-checkbox></p>
+        <p><mat-checkbox formControlName="USER">USER</mat-checkbox></p>
+      </section>
+    </div>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" color="accent" cdkFocusInitial>Save</button>
+</mat-dialog-actions>
+</div>

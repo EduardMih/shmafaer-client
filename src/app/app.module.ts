@@ -32,6 +32,8 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { AllUsersComponent } from './all-users/all-users.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
+import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import {MatTableModule} from "@angular/material/table";
     AdminDashboardComponent,
     AddUserComponent,
     AllUsersComponent,
+    EditUserDialogComponent,
   ],
     imports: [
         BrowserModule,
@@ -71,6 +74,7 @@ import {MatTableModule} from "@angular/material/table";
         MatListModule,
         MatPaginatorModule,
         MatTableModule,
+        MatDialogModule
     ],
   providers: [],
   bootstrap: [AppComponent]
