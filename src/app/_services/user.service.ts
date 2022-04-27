@@ -29,14 +29,14 @@ export class UserService {
 
   }
 
-  fetchUsers(email: string | undefined, page: number, size: number): Observable<GetUsersResponse>
+  fetchUsers(email: string, page: number, size: number): Observable<GetUsersResponse>
   {
     let path = `/users/search?page=${page}&size=${size}`;
 
-    if(email !== undefined)
+    if(email !== "")
       path = path + `&email=${email}`
 
-    //console.log(path)
+    console.log(path)
 
     return this.http.get<GetUsersResponse>(environment.BASE_API + path, httpOptions);
 
