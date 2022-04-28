@@ -88,8 +88,15 @@ export class AllUsersComponent implements OnInit, AfterViewInit {
     console.log(row)
     const dialogRef = this.dialog.open(EditUserDialogComponent, { data: row, width: '75%'});
 
-    dialogRef.afterClosed().subscribe(resut => {
-      console.log(resut)
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
+      if((result !== undefined) && (result !== null))
+      {
+        this.data.forEach(user => {
+          if (user.email == result.email)
+            user.roles = result.roles;
+        })
+      }
     })
 
   }

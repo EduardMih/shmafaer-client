@@ -5,6 +5,7 @@ import {LiveSearchUserResponse} from "../_dtos/live-search-user-response.model";
 import {environment} from "../../environments/environment";
 import {UserDetails} from "../_dtos/user-details.model";
 import {GetUsersResponse} from "../_dtos/get-users-response.model";
+import {UpdateUserRoles} from "../_dtos/update-user-roles.model";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -39,6 +40,16 @@ export class UserService {
     console.log(path)
 
     return this.http.get<GetUsersResponse>(environment.BASE_API + path, httpOptions);
+
+  }
+  public updateUserRoles(email: string, newRoles: string[]): Observable<UserDetails>
+  {
+    let updateDTO: UpdateUserRoles = {
+      email: email,
+      newRoles: newRoles
+    }
+
+    return this.http.patch<UserDetails>(environment.BASE_API + "/users/update/roles", updateDTO ,httpOptions);
 
   }
 
