@@ -9,6 +9,7 @@ import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.compone
 import {AddUserComponent} from "./add-user/add-user.component";
 import {AuthGuard} from "./_services/auth/guards/auth.guard";
 import {NotEnoughPermissionsComponent} from "./not-enough-permissions/not-enough-permissions.component";
+import {AllProjectsComponent} from "./all-projects/all-projects.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [AuthGuard],
     data: {expectedRoles: ['ADMIN']}},
   { path: 'adminDashboard/addUser', component: AddUserComponent },
+  { path: 'viewProjects', component: AllProjectsComponent},
   { path: 'notEnoughPermissions', component: NotEnoughPermissionsComponent }
 ];
 
