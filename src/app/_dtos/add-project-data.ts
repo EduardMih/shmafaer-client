@@ -1,4 +1,4 @@
-export interface AddProjectRequest {
+export interface AddProjectData {
   title: string,
   repoLink: string,
   description: string,

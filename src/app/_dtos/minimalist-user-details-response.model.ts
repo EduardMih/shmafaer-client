@@ -1,4 +1,4 @@
-export interface LiveSearchUserResponse {
+export interface MinimalistUserDetailsResponse {
   firstname: string;
   lastname: string;
   email: string;

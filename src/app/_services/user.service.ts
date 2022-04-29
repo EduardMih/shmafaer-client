@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
-import {LiveSearchUserResponse} from "../_dtos/live-search-user-response.model";
+import {MinimalistUserDetailsResponse} from "../_dtos/minimalist-user-details-response.model";
 import {environment} from "../../environments/environment";
 import {UserDetails} from "../_dtos/user-details.model";
 import {GetUsersResponse} from "../_dtos/get-users-response.model";
@@ -18,14 +18,14 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  fetchUsersByNamePatternAndRole(namePattern: string, role: string): Observable<LiveSearchUserResponse[]>
+  fetchUsersByNamePatternAndRole(namePattern: string, role: string): Observable<MinimalistUserDetailsResponse[]>
   {
     let path: string = `/users/liveSearch?namePattern=${namePattern}`;
 
     if(role !== "")
       path = path + `&role=${role}`;
 
-    return this.http.get<LiveSearchUserResponse[]>(environment.BASE_API + path, httpOptions)
+    return this.http.get<MinimalistUserDetailsResponse[]>(environment.BASE_API + path, httpOptions)
       .pipe(catchError(err => of([])));
 
   }

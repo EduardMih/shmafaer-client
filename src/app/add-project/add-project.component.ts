@@ -4,8 +4,8 @@ import {debounceTime, distinctUntilChanged, map, Observable, startWith, switchMa
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {UserService} from "../_services/user.service";
-import {LiveSearchUserResponse} from "../_dtos/live-search-user-response.model";
-import {AddProjectRequest} from "../_dtos/add-project-request";
+import {MinimalistUserDetailsResponse} from "../_dtos/minimalist-user-details-response.model";
+import {AddProjectData} from "../_dtos/add-project-data";
 import {ProjectService} from "../_services/project.service";
 import {Router} from "@angular/router";
 
@@ -20,10 +20,10 @@ export class AddProjectComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   projectTypes: string[] = ["BACHELOR", "MASTERY", "DOCTORAL", "RESEARCH"]
 
-  selectedCollaborators:Set<LiveSearchUserResponse> = new Set();
-  selectedCoordinator: LiveSearchUserResponse | undefined;
-  filteredCoordinators: Observable<LiveSearchUserResponse[]>
-  filteredCollaborators: Observable<LiveSearchUserResponse[]>;
+  selectedCollaborators:Set<MinimalistUserDetailsResponse> = new Set();
+  selectedCoordinator: MinimalistUserDetailsResponse | undefined;
+  filteredCoordinators: Observable<MinimalistUserDetailsResponse[]>
+  filteredCollaborators: Observable<MinimalistUserDetailsResponse[]>;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   coordinatorCtrl = new FormControl("", [Validators.required]);
@@ -121,7 +121,7 @@ export class AddProjectComponent implements OnInit {
       this.collaboratorsCtrl.setErrors(null);
   }*/
 
-  remove(collaborator: LiveSearchUserResponse): void
+  remove(collaborator: MinimalistUserDetailsResponse): void
   {
     this.selectedCollaborators.delete(collaborator);
 
@@ -153,7 +153,7 @@ export class AddProjectComponent implements OnInit {
 
   onSubmit(): void
   {
-    let data: AddProjectRequest = {
+    let data: AddProjectData = {
       title: this.firstFormGroup.value.title,
       repoLink: this.firstFormGroup.value.repoLink,
       description: this.firstFormGroup.value.description,
@@ -192,7 +192,7 @@ export class AddProjectComponent implements OnInit {
     });
   }
 
-  displayUser(user: LiveSearchUserResponse): string
+  displayUser(user: MinimalistUserDetailsResponse): string
   {
 
     return user.firstname?.concat(' ', user.lastname, ' (', user.email, ')');
