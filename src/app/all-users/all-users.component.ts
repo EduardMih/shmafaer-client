@@ -98,6 +98,5 @@ export class AllUsersComponent implements OnInit, AfterViewInit {
         })
       }
     })
-
   }
 }

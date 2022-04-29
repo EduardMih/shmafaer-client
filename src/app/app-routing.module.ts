@@ -7,15 +7,20 @@ import {AddProjectComponent} from "./add-project/add-project.component";
 import {NavbarComponent} from "./navbar/navbar.component";
 import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.component";
 import {AddUserComponent} from "./add-user/add-user.component";
+import {AuthGuard} from "./_services/auth/guards/auth.guard";
+import {NotEnoughPermissionsComponent} from "./not-enough-permissions/not-enough-permissions.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'error', component: GeneralErrorPageComponent },
-  { path: 'addProject', component: AddProjectComponent },
+  { path: 'addProject', component: AddProjectComponent, canActivate: [AuthGuard],
+    data: { expectedRoles: ['ADMIN', 'STUDENT', 'PROFESSOR']} },
   { path: 'nav', component:NavbarComponent },
-  { path: 'adminDashboard', component: AdminDashboardComponent },
-  { path: 'adminDashboard/addUser', component: AddUserComponent}
+  { path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [AuthGuard],
+    data: {expectedRoles: ['ADMIN']}},
+  { path: 'adminDashboard/addUser', component: AddUserComponent },
+  { path: 'notEnoughPermissions', component: NotEnoughPermissionsComponent }
 ];
 
 @NgModule({

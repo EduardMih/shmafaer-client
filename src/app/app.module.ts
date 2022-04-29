@@ -35,6 +35,7 @@ import {MatTableModule} from "@angular/material/table";
 import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {AuthInterceptor} from "./_helpers/auth.interceptor";
+import { NotEnoughPermissionsComponent } from './not-enough-permissions/not-enough-permissions.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {AuthInterceptor} from "./_helpers/auth.interceptor";
     AddUserComponent,
     AllUsersComponent,
     EditUserDialogComponent,
+    NotEnoughPermissionsComponent,
   ],
     imports: [
         BrowserModule,
