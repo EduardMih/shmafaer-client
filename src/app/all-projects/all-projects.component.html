@@ -1,3 +1,6 @@
+<mat-tab-group mat-align-tabs="start">
+  <mat-tab label="All projects">
+
 <div class="cards-container">
 <mat-card role="group" class="bg-dark" *ngFor="let project of data">
   <mat-card-header>
@@ -50,11 +53,14 @@
 
   </mat-card-content>
 </mat-card>
-
   <mat-paginator [pageSizeOptions]="[3, 5, 7]"
                  showFirstLastButtons
                  [length]="resultsLength">
   </mat-paginator>
-
 </div>
+  </mat-tab>
+  <mat-tab label="Coordinated">
+  </mat-tab>
+</mat-tab-group>
+
 

@@ -38,6 +38,7 @@ import {AuthInterceptor} from "./_helpers/auth.interceptor";
 import { NotEnoughPermissionsComponent } from './not-enough-permissions/not-enough-permissions.component';
 import { AllProjectsComponent } from './all-projects/all-projects.component';
 import {MatGridListModule} from "@angular/material/grid-list";
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({
@@ -55,34 +56,35 @@ import {MatGridListModule} from "@angular/material/grid-list";
     NotEnoughPermissionsComponent,
     AllProjectsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    ReactiveFormsModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSliderModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatBadgeModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatStepperModule,
-    MatSelectModule,
-    MatAutocompleteModule,
-    MatChipsModule,
-    MatIconModule,
-    CdkTableModule,
-    MatSidenavModule,
-    MatListModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatDialogModule,
-    MatGridListModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSliderModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatBadgeModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatStepperModule,
+        MatSelectModule,
+        MatAutocompleteModule,
+        MatChipsModule,
+        MatIconModule,
+        CdkTableModule,
+        MatSidenavModule,
+        MatListModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatDialogModule,
+        MatGridListModule,
+        MatTabsModule
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
