@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthTokenService} from "../_services/auth-token.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,8 @@ import {AuthTokenService} from "../_services/auth-token.service";
 export class NavbarComponent implements OnInit {
   public isCollapsed: boolean = true;
 
-  constructor(public tokenAuthService: AuthTokenService)
+  constructor(public tokenAuthService: AuthTokenService,
+              private router: Router)
   {
   }
 
@@ -42,7 +44,8 @@ export class NavbarComponent implements OnInit {
   logout(): void
   {
     this.tokenAuthService.logout();
-    window.location.reload()
+    //window.location.reload();
+    this.router.navigate(['/login'])
 
   }
 
