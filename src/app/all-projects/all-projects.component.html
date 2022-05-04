@@ -1,7 +1,10 @@
-<mat-tab-group mat-align-tabs="start">
-  <mat-tab label="All projects">
+<mat-tab-group mat-align-tabs="start" (selectedTabChange)="tabChanged($event)">
+  <mat-tab *ngFor="let tabLabel of tabLabels" label="{{tabLabel}}">
 
 <div class="cards-container">
+  <div *ngIf="data.length == 0" class="bg-dark m-5 p-5 text-white rounded">
+    No projects for this category
+  </div>
 <mat-card role="group" class="bg-dark" *ngFor="let project of data">
   <mat-card-header>
     <mat-card-title>
@@ -53,14 +56,26 @@
 
   </mat-card-content>
 </mat-card>
+<!--
   <mat-paginator [pageSizeOptions]="[3, 5, 7]"
                  showFirstLastButtons
-                 [length]="resultsLength">
+                 [length]="resultsLength"
+                 #myPaginator
+  >
   </mat-paginator>
+-->
 </div>
   </mat-tab>
-  <mat-tab label="Coordinated">
-  </mat-tab>
 </mat-tab-group>
+
+<mat-paginator [pageSizeOptions]="[3, 5, 7]"
+               showFirstLastButtons
+               [length]="resultsLength"
+               #myPaginator
+>
+</mat-paginator>
+
+
+
 
 

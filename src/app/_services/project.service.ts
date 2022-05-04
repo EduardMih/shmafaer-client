@@ -23,11 +23,29 @@ export class ProjectService {
 
   }
 
-  fetchProjects(page: number, size: number): Observable<GetProjectsResponse>
+  fetchAllProjects(page: number, size: number): Observable<GetProjectsResponse>
   {
     let path: string = `/projects?page=${page}&size=${size}`;
 
     return this.http.get<GetProjectsResponse>(environment.BASE_API + path, httpOptions);
+
+  }
+
+  fetchUserProjects(page: number, size: number, coordinated: boolean, collaborated: boolean):
+    Observable<GetProjectsResponse>
+  {
+    let path: string = `/projects/userProjects?page=${page}&size=${size}`;
+
+    if(coordinated)
+      path = path + `&coordinated=true`;
+
+    else
+
+      if(collaborated)
+        path = path + `&collaborated=true`;
+
+    return this.http.get<GetProjectsResponse>(environment.BASE_API + path, httpOptions);
+
 
   }
 }
