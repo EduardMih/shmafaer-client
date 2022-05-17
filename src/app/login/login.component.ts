@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(this.authTokenService.isAuthenticated())
+      this.router.navigate(['/'])
   }
 
   initializeForm(): FormGroup

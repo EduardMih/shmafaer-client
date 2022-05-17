@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {AddProjectData} from "../_dtos/add-project-data";
 import {environment} from "../../environments/environment";
 import {GetProjectsResponse} from "../_dtos/get-projects-response.model";
+import {GetProjectData} from "../_dtos/get-project-data.model";
+import {DownloadInfo} from "../_dtos/download-info.model";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -46,6 +48,20 @@ export class ProjectService {
 
     return this.http.get<GetProjectsResponse>(environment.BASE_API + path, httpOptions);
 
+  }
+
+  sendArchivingRequest(project: GetProjectData): void
+  {
+    //send archive request to server - it will forward it to SH
 
   }
+
+  fetchDownloadInfo(projectRepoLink: string): Observable<DownloadInfo>
+  {
+    let path = `/projects/archive/download?projectRepoLink=${projectRepoLink}`;
+
+    return this.http.get<DownloadInfo>(environment.BASE_API + path, httpOptions);
+
+  }
+
 }

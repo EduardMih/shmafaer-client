@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {LoginResponse} from "../_dtos/login-response.model";
 import {UserDetails} from "../_dtos/user-details.model";
+import {MinimalistUserDetailsResponse} from "../_dtos/minimalist-user-details-response.model";
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
@@ -42,6 +43,7 @@ export class AuthTokenService {
     window.localStorage.setItem(USER_KEY, JSON.stringify({
       firstname: data.firstname,
       lastname: data.lastname,
+      email: data.email,
       roles: data.roles
       }
     ))

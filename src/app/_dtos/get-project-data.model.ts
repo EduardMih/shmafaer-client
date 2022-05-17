@@ -1,6 +1,7 @@
 import {MinimalistUserDetailsResponse} from "./minimalist-user-details-response.model";
 
 export interface GetProjectData {
+  id: number,
   title: string,
   repoLink: string,
   description: string,
@@ -11,7 +12,6 @@ export interface GetProjectData {
 
   coordinator: MinimalistUserDetailsResponse,
 
-  collaborators:MinimalistUserDetailsResponse[]
-
+  collaborators: MinimalistUserDetailsResponse[]
 
 }

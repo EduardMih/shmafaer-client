@@ -39,6 +39,9 @@ import { NotEnoughPermissionsComponent } from './not-enough-permissions/not-enou
 import { AllProjectsComponent } from './all-projects/all-projects.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatTabsModule} from "@angular/material/tabs";
+import { HomePageComponent } from './home-page/home-page.component';
+import { DownloadDialogComponent } from './download-dialog/download-dialog.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -55,6 +58,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     EditUserDialogComponent,
     NotEnoughPermissionsComponent,
     AllProjectsComponent,
+    HomePageComponent,
+    DownloadDialogComponent,
   ],
     imports: [
         BrowserModule,
@@ -83,7 +88,8 @@ import {MatTabsModule} from "@angular/material/tabs";
         MatTableModule,
         MatDialogModule,
         MatGridListModule,
-        MatTabsModule
+        MatTabsModule,
+        MatProgressSpinnerModule
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

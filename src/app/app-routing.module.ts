@@ -10,8 +10,10 @@ import {AddUserComponent} from "./add-user/add-user.component";
 import {AuthGuard} from "./_services/auth/guards/auth.guard";
 import {NotEnoughPermissionsComponent} from "./not-enough-permissions/not-enough-permissions.component";
 import {AllProjectsComponent} from "./all-projects/all-projects.component";
+import {HomePageComponent} from "./home-page/home-page.component";
 
 const routes: Routes = [
+  { path: "", component: HomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'error', component: GeneralErrorPageComponent },

@@ -1,0 +1,21 @@
+<div *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+<h2 mat-dialog-title>Download</h2>
+<mat-dialog-content>
+<h3>{{data.title}}</h3>
+<hr>
+<div>
+  <h4>Status: {{downloadInfo.status}}</h4>
+  <button mat-raised-button color="accent"><a href="{{downloadInfo.fetch_url}}" download>Click here to download</a></button>
+  <p class="m-3">After Downloading extract with:</p>
+  <p class="mx-5"><i>tar xvf path/to/swh_1_*.tar.gz</i></p>
+</div>
+</mat-dialog-content>
+<hr>
+<mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+</div>

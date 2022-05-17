@@ -5,6 +5,7 @@ import {RegisterUser} from "../_dtos/register-user.model";
 import {passwordMatchValidator} from "../_validators/passwords-match.directive";
 import {passwordPatternCheck} from "../_validators/password-min-security.directive";
 import {Router} from "@angular/router";
+import {AuthTokenService} from "../_services/auth-token.service";
 
 
 @Component({
@@ -23,11 +24,13 @@ export class RegisterComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
+              private authTokenService: AuthTokenService,
               private router: Router
               ) { }
 
   ngOnInit(): void {
-
+    if(this.authTokenService.isAuthenticated())
+      this.router.navigate(['/'])
   }
 
   initializeForm(): FormGroup

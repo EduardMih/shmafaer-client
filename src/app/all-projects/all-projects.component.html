@@ -1,4 +1,7 @@
-<mat-tab-group mat-align-tabs="start" (selectedTabChange)="tabChanged($event)">
+<mat-tab-group
+  mat-align-tabs="start"
+  color="accent"
+  (selectedTabChange)="tabChanged($event)">
   <mat-tab *ngFor="let tabLabel of tabLabels" label="{{tabLabel}}">
 
 <div class="cards-container">
@@ -55,6 +58,13 @@
     </div>
 
   </mat-card-content>
+
+  <hr>
+
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" [disabled]="!isDownloadable(project)" (click)="openDownloadDialog(project)">Download</button>
+    <button mat-raised-button color="accent" *ngIf="canSendToSH(project)">Send to SH</button>
+  </mat-card-actions>
 </mat-card>
 <!--
   <mat-paginator [pageSizeOptions]="[3, 5, 7]"

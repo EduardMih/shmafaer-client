@@ -80,5 +80,9 @@ mat-paginator
 
 }
 
+button
+{
+  margin: 0 16px 16px !important;
+}
 
 
