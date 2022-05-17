@@ -50,9 +50,21 @@ export class ProjectService {
 
   }
 
-  sendArchivingRequest(project: GetProjectData): void
+  sendArchivingRequest(project: GetProjectData): Observable<GetProjectData>
   {
     //send archive request to server - it will forward it to SH
+
+    let path = `/projects/archive?projectRepoLink=${project.repoLink}`;
+
+    return this.http.post<GetProjectData>(environment.BASE_API + path, httpOptions)
+
+  }
+
+  updateProjectStatus(project: GetProjectData): Observable<GetProjectData>
+  {
+    let path = `/projects/archive?projectRepoLink=${project.repoLink}`;
+
+    return this.http.get<GetProjectData>(environment.BASE_API + path, httpOptions)
 
   }
 

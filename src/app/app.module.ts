@@ -42,6 +42,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import { HomePageComponent } from './home-page/home-page.component';
 import { DownloadDialogComponent } from './download-dialog/download-dialog.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         MatDialogModule,
         MatGridListModule,
         MatTabsModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatSnackBarModule
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

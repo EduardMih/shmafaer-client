@@ -10,6 +10,8 @@ import {AuthTokenService} from "../_services/auth-token.service";
 import {MatDialog} from "@angular/material/dialog";
 import {DownloadDialogComponent} from "../download-dialog/download-dialog.component";
 import {DownloadInfo} from "../_dtos/download-info.model";
+import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 const possibleTabLabels: string[] = ["All projects", "Coordinated", "Collaborated", "Owned"];
 
@@ -25,7 +27,9 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
 
   constructor(private projectService: ProjectService,
               private authTokenService: AuthTokenService,
-              private dialog: MatDialog
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar,
+              private router: Router
   )
   {
     this.tabLabels.push(possibleTabLabels[0]);
@@ -151,5 +155,42 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
 
 
   }
+
+  onRefreshStatus(project: GetProjectData): void
+  {
+    console.log("Refreshing status")
+    let index;
+    this.projectService.updateProjectStatus(project).subscribe({
+        next: incomingData => {
+         index = this.data.findIndex((project) => project.repoLink == incomingData.repoLink);
+         //console.log(this.data[index])
+          this.data[index] = incomingData;
+        },
+      error: err => {
+          this.router.navigate(['/error'])
+      }
+    }
+    )
+  }
+
+  onSendArchivingRequest(project: GetProjectData): void
+  {
+    let index;
+    console.log("Sending archive request...")
+
+    this.projectService.sendArchivingRequest(project).subscribe({
+        next: incomingData => {
+          index = this.data.findIndex((project) => project.repoLink == incomingData.repoLink);
+          //console.log(this.data[index])
+          this.snackBar.open("Project Archived", undefined, {duration: 2500})
+          this.data[index] = incomingData;
+        },
+        error: err => {
+          this.router.navigate(['/error'])
+        }
+      }
+    )
+  }
+
 
 }

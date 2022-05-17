@@ -9,13 +9,13 @@
 <hr>
 <div>
   <h4>Status: {{downloadInfo.status}}</h4>
-  <button mat-raised-button color="accent"><a href="{{downloadInfo.fetch_url}}" download>Click here to download</a></button>
+  <a mat-raised-button color="accent" href="{{downloadInfo.fetch_url}}" download [disabled]="!isReady()">Click here to download</a>
   <p class="m-3">After Downloading extract with:</p>
   <p class="mx-5"><i>tar xvf path/to/swh_1_*.tar.gz</i></p>
 </div>
 </mat-dialog-content>
 <hr>
 <mat-dialog-actions>
-  <button mat-stroked-button mat-dialog-close [disabled]="!isReady()">Cancel</button>
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>
 </div>

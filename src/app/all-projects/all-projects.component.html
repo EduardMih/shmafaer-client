@@ -12,7 +12,7 @@
   <mat-card-header>
     <mat-card-title>
       {{project.title}}
-    <span>({{project.status}})</span>
+    <span>({{project.status}})<mat-icon (click)="onRefreshStatus(project)">refresh</mat-icon></span>
     </mat-card-title>
     <mat-card-subtitle *ngIf="!isResearchProject(project)">
       {{project.owner.firstname}} {{project.owner.lastname}}
@@ -63,7 +63,7 @@
 
   <mat-card-actions align="end">
     <button mat-raised-button color="primary" [disabled]="!isDownloadable(project)" (click)="openDownloadDialog(project)">Download</button>
-    <button mat-raised-button color="accent" *ngIf="canSendToSH(project)">Send to SH</button>
+    <button mat-raised-button color="accent" *ngIf="canSendToSH(project)" (click)="onSendArchivingRequest(project)">Send to SH</button>
   </mat-card-actions>
 </mat-card>
 <!--
