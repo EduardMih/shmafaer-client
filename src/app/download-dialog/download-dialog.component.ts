@@ -37,6 +37,13 @@ export class DownloadDialogComponent implements OnInit, AfterViewInit {
     )
   }
 
+  isReady(): boolean
+  {
+
+    return this.downloadInfo.status == "done";
+
+  }
+
 
 
 }

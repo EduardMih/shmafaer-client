@@ -16,6 +16,6 @@
 </mat-dialog-content>
 <hr>
 <mat-dialog-actions>
-  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button mat-stroked-button mat-dialog-close [disabled]="!isReady()">Cancel</button>
 </mat-dialog-actions>
 </div>
