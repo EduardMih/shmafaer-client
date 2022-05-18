@@ -161,7 +161,7 @@ export class AddProjectComponent implements OnInit {
       projectType: this.secondFormGroup.value.projectType,
 
       // to be replaced with email from token
-      ownerEmail: "hamza.edw@gmail.com",
+      //ownerEmail: "hamza.edw@gmail.com",
 
       coordinatorEmail: this.selectedCoordinator?.email,
 

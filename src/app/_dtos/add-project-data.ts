@@ -3,7 +3,7 @@ export interface AddProjectData {
   repoLink: string,
   description: string,
   projectType: string,
-  ownerEmail: string,
+  //ownerEmail: string,
   coordinatorEmail: string | undefined,
   collaboratorsEmail: string[]
 }
