@@ -9,7 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { GeneralErrorPageComponent } from './general-error-page/general-error-page.component';
-import { AddProjectComponent } from './add-project/add-project.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
 import {MatCardModule} from "@angular/material/card";
@@ -43,6 +43,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { DownloadDialogComponent } from './download-dialog/download-dialog.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { UpdateProjectComponent } from './update-project/update-project.component';
+import { CreateProjectComponent } from './create-project/create-project.component';
 
 
 @NgModule({
@@ -51,7 +53,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     LoginComponent,
     RegisterComponent,
     GeneralErrorPageComponent,
-    AddProjectComponent,
+    EditProjectComponent,
     NavbarComponent,
     AdminDashboardComponent,
     AddUserComponent,
@@ -61,6 +63,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     AllProjectsComponent,
     HomePageComponent,
     DownloadDialogComponent,
+    UpdateProjectComponent,
+    CreateProjectComponent,
   ],
     imports: [
         BrowserModule,

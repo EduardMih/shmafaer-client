@@ -1,0 +1,32 @@
+<section class="vh-100">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-10">
+
+        <div class="card bg-dark">
+          <div class="card-header text-white h5 p-5 text-center">Add New Project</div>
+
+          <div class="card-body">
+
+            <div class="alert alert-danger" *ngIf="isSubmitted && !isSuccessful">
+              {{requestMessage}}
+            </div>
+
+            <div class="alert alert-success" *ngIf="isSubmitted && isSuccessful">
+              {{requestMessage}}
+            </div>
+
+               <app-edit-project
+                 *ngIf="(!isSubmitted) || (isSubmitted && !isSuccessful)"
+                 [oldProject]="undefined"
+                 (projectEvent)="createProject($event)"
+               >
+               </app-edit-project>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {debounceTime, distinctUntilChanged, map, Observable, startWith, switchMap} from "rxjs";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
@@ -7,16 +7,16 @@ import {UserService} from "../_services/user.service";
 import {MinimalistUserDetailsResponse} from "../_dtos/minimalist-user-details-response.model";
 import {AddProjectData} from "../_dtos/add-project-data";
 import {ProjectService} from "../_services/project.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 const PROFESSOR_ROLE = "PROFESSOR";
 
 @Component({
-  selector: 'app-add-project',
-  templateUrl: './add-project.component.html',
-  styleUrls: ['./add-project.component.css']
+  selector: 'app-edit-project',
+  templateUrl: './edit-project.component.html',
+  styleUrls: ['./edit-project.component.css']
 })
-export class AddProjectComponent implements OnInit {
+export class EditProjectComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   projectTypes: string[] = ["BACHELOR", "MASTERY", "DOCTORAL", "RESEARCH"]
 
@@ -30,9 +30,12 @@ export class AddProjectComponent implements OnInit {
   collaboratorsCtrl = new FormControl("", [Validators.required]);
   agreeCtrl = new FormControl(false, [Validators.requiredTrue])
   isResearchProj: boolean = false;
-  isSuccessful: boolean = false;
+  //isSuccessful: boolean = false;
   requestMessage: string = "";
-  isSubmitted: boolean = false;
+  //isSubmitted: boolean = false;
+
+  @Input() oldProject: AddProjectData | undefined;
+  @Output() projectEvent = new EventEmitter<AddProjectData>();
 
   // @ts-ignore
   @ViewChild('collaboratorInput') collaboratorInput: ElementRef<HTMLInputElement>;
@@ -40,7 +43,7 @@ export class AddProjectComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private userService: UserService,
               private projectService: ProjectService,
-              private router: Router
+              private router: Router,
   ) {
     this.firstFormGroup = this.fb.group({
       title: ['', Validators.required],
@@ -94,6 +97,7 @@ export class AddProjectComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.oldProject)
   }
 
 
@@ -169,8 +173,11 @@ export class AddProjectComponent implements OnInit {
 
     }
 
-    this.isSubmitted = true;
+    //this.isSubmitted = true;
 
+    this.projectEvent.emit(data);
+
+    /*
     this.projectService.addProject(data).subscribe({
       next: value => {
         this.isSuccessful = true;
@@ -190,6 +197,7 @@ export class AddProjectComponent implements OnInit {
 
       }
     });
+    */
   }
 
   displayUser(user: MinimalistUserDetailsResponse): string

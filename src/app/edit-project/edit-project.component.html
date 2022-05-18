@@ -1,3 +1,4 @@
+<!--
 <section class="vh-100">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -15,8 +16,12 @@
             <div class="alert alert-success" *ngIf="isSubmitted && isSuccessful">
               {{requestMessage}}
             </div>
+-->
+            <mat-stepper linear #stepper>
+                         <!--
+                         *ngIf="(!isSubmitted) || (isSubmitted && !isSuccessful)"
+                         -->
 
-            <mat-stepper linear #stepper *ngIf="(!isSubmitted) || (isSubmitted && !isSuccessful)">
               <mat-step [stepControl]="firstFormGroup">
 
                 <form [formGroup]="firstFormGroup">
@@ -155,11 +160,14 @@
               </mat-step>
 
             </mat-stepper>
+
+<!--
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+-->
 
 
