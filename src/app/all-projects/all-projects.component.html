@@ -31,29 +31,35 @@
   <mat-card-content>
     <div class="my-content">
 
-      <div class="my-col left">
+      <div class="left">
         <div class="my-row" *ngIf="!isResearchProject(project)">
           <h3 class="m-0">Coordinator:</h3>
           <p>{{project.coordinator.firstname}} {{project.coordinator.lastname}}</p>
           <hr>
         </div>
-        <div class="my-row">
+        <div>
           <h3 class="m-0">Repository Link:</h3>
           <p>
             <a href="{{project.repoLink}}">Go to project repo</a>
           </p>
           <hr>
         </div>
-        <div class="my-row">
+        <div>
           <h3 class="m-0">Type:</h3>
           <p>{{project.projectType}}</p>
 
         </div>
       </div>
 
-      <div class="my-col right">
+      <div class="right">
+        <div>
+          <app-project-rating></app-project-rating>
+        </div>
+        <hr>
+        <div>
         <h3>Description</h3>
          {{project.description}}
+        </div>
       </div>
     </div>
 

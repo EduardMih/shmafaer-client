@@ -45,6 +45,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
+import { ProjectRatingComponent } from './project-rating/project-rating.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
     DownloadDialogComponent,
     UpdateProjectComponent,
     CreateProjectComponent,
+    ProjectRatingComponent,
   ],
     imports: [
         BrowserModule,
