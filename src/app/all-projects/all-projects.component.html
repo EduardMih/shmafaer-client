@@ -12,7 +12,7 @@
   <mat-card-header>
     <mat-card-title>
       {{project.title}}
-    <span>({{project.status}})<mat-icon (click)="onRefreshStatus(project)">refresh</mat-icon></span>
+    <span>({{project.status}})<mat-icon class="refresh" (click)="onRefreshStatus(project)">refresh</mat-icon></span>
     </mat-card-title>
     <mat-card-subtitle *ngIf="!isResearchProject(project)">
       {{project.owner.firstname}} {{project.owner.lastname}}
@@ -29,6 +29,10 @@
   <hr>
 
   <mat-card-content>
+    <div>
+      <app-project-rating></app-project-rating>
+    </div>
+    <hr>
     <div class="my-content">
 
       <div class="left">
@@ -52,15 +56,10 @@
       </div>
 
       <div class="right">
-        <div>
-          <app-project-rating></app-project-rating>
-        </div>
-        <hr>
-        <div>
         <h3>Description</h3>
          {{project.description}}
-        </div>
       </div>
+
     </div>
 
   </mat-card-content>
