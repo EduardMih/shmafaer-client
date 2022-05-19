@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'error', component: GeneralErrorPageComponent },
   { path: 'addProject', component: CreateProjectComponent, canActivate: [AuthGuard],
     data: { expectedRoles: ['ADMIN', 'STUDENT', 'PROFESSOR']} },
-  { path: "editProject", component: UpdateProjectComponent },
+  { path: "updateProject/:id", component: UpdateProjectComponent },
   { path: 'nav', component:NavbarComponent },
   { path: 'adminDashboard', component: AdminDashboardComponent, canActivate: [AuthGuard],
     data: {expectedRoles: ['ADMIN']}},

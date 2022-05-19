@@ -8,6 +8,7 @@ import {MinimalistUserDetailsResponse} from "../_dtos/minimalist-user-details-re
 import {AddProjectData} from "../_dtos/add-project-data";
 import {ProjectService} from "../_services/project.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {GetProjectData} from "../_dtos/get-project-data.model";
 
 const PROFESSOR_ROLE = "PROFESSOR";
 
@@ -34,7 +35,7 @@ export class EditProjectComponent implements OnInit {
   requestMessage: string = "";
   //isSubmitted: boolean = false;
 
-  @Input() oldProject: AddProjectData | undefined;
+  @Input() oldProject: GetProjectData | undefined;
   @Output() projectEvent = new EventEmitter<AddProjectData>();
 
   // @ts-ignore
@@ -97,7 +98,33 @@ export class EditProjectComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.oldProject)
+    if(this.oldProject != undefined)
+    {
+      this.firstFormGroup.setValue({
+        title: this.oldProject.title,
+        repoLink: this.oldProject.repoLink,
+        description: this.oldProject.description
+      })
+
+      this.secondFormGroup.setValue({projectType: this.oldProject.projectType})
+
+      if(this.oldProject.projectType === this.projectTypes[3])
+      {
+        this.isResearchProj = true;
+        this.oldProject.collaborators.forEach(
+          (collaborator) => this.selectedCollaborators.add(collaborator)
+        );
+        this.collaboratorsCtrl.setValue(this.selectedCollaborators);
+
+      }
+
+      else
+
+      {
+        this.selectedCoordinator = this.oldProject.coordinator;
+        this.coordinatorCtrl.setValue(this.selectedCoordinator)
+      }
+    }
   }
 
 
@@ -108,7 +135,13 @@ export class EditProjectComponent implements OnInit {
 
     //if research project
     if (this.secondFormGroup.get('projectType')?.value === this.projectTypes[3])
+    {
       this.isResearchProj = true;
+      //this.coordinatorCtrl.reset()
+      //this.selectedCoordinator = undefined;
+      //this.coordinatorCtrl.reset();
+
+    }
   }
 
   /*add(event: MatChipInputEvent): void
@@ -175,6 +208,8 @@ export class EditProjectComponent implements OnInit {
 
     //this.isSubmitted = true;
 
+    data = this.clearUnnecessaryProjectData(data);
+
     this.projectEvent.emit(data);
 
     /*
@@ -200,10 +235,27 @@ export class EditProjectComponent implements OnInit {
     */
   }
 
+  clearUnnecessaryProjectData(project: AddProjectData): AddProjectData
+  {
+    if(project.projectType == this.projectTypes[3])
+    {
+      project.coordinatorEmail = undefined;
+    }
+
+    else
+
+    {
+      project.collaboratorsEmail = [];
+    }
+
+    return project;
+
+  }
+
   displayUser(user: MinimalistUserDetailsResponse): string
   {
 
-    return user.firstname?.concat(' ', user.lastname, ' (', user.email, ')');
+    return user?.firstname?.concat(' ', user.lastname, ' (', user.email, ')');
 
   }
 }

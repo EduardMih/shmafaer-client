@@ -192,5 +192,22 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
     )
   }
 
+  canEdit(project: GetProjectData): boolean
+  {
+    let currentUserEmail = this.authTokenService.getUserData()?.email
+
+    let isOwner = project.owner.email == currentUserEmail
+    let isAdmin = this.authTokenService.getUserData()!.roles.includes("ADMIN");
+    let isCollaborator = project.collaborators.some((collaborator) => collaborator.email == currentUserEmail)
+
+    return isOwner || isCollaborator || isAdmin;
+
+  }
+
+  goToEditProjectPage(id: string): void
+  {
+    this.router.navigate(['/updateProject', id])
+  }
+
 
 }

@@ -50,6 +50,25 @@ export class ProjectService {
 
   }
 
+  fetchProjectByID(id: string): Observable<GetProjectData>
+  {
+    let path: string = `/projects/${id}`;
+
+    return this.http.get<GetProjectData>(environment.BASE_API + path, httpOptions);
+
+  }
+
+  updateProject(projectData: AddProjectData, id: string): Observable<GetProjectData>
+  {
+    let path: string = `/projects/${id}`;
+
+    return this.http.put<GetProjectData>(environment.BASE_API + path, projectData, httpOptions);
+
+  }
+
+
+
+
   sendArchivingRequest(project: GetProjectData): Observable<GetProjectData>
   {
     //send archive request to server - it will forward it to SH

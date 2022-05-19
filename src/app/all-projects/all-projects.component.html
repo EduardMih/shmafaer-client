@@ -62,6 +62,7 @@
   <hr>
 
   <mat-card-actions align="end">
+    <button mat-stroked-button *ngIf="canEdit(project)" (click)="goToEditProjectPage(project.id.toString())">Edit</button>
     <button mat-raised-button color="primary" [disabled]="!isDownloadable(project)" (click)="openDownloadDialog(project)">Download</button>
     <button mat-raised-button color="accent" *ngIf="canSendToSH(project)" (click)="onSendArchivingRequest(project)">Send to SH</button>
   </mat-card-actions>
