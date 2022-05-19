@@ -45,6 +45,11 @@ mat-card
     flex-direction: column;
   }
 
+  mat-paginator
+  {
+    transform: translate(-50%, 0) !important;
+  }
+
 }
 
 .collaborator
