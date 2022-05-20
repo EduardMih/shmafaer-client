@@ -1,4 +1,5 @@
-<ngb-rating [(rate)]="currentRate">
+<ngb-rating [(rate)]="currentRate"
+            (rateChange)="onRateChange($event)">
   <ng-template let-fill="fill" let-index="index">
     <span class="star"
           [class.filled]="fill === 100">&#9733;
