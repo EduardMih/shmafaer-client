@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AddProjectData} from "../_dtos/add-project-data";
 import {environment} from "../../environments/environment";
 import {GetProjectsResponse} from "../_dtos/get-projects-response.model";
 import {GetProjectData} from "../_dtos/get-project-data.model";
 import {DownloadInfo} from "../_dtos/download-info.model";
+import {ProjectSearchData} from "../_utils/project-search-data";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -58,6 +59,29 @@ export class ProjectService {
 
   }
 
+  searchProjects(searchData: ProjectSearchData, pageIndex: number, pageSize: number): Observable<GetProjectsResponse>
+  {
+    let path: string = `/projects/search`;
+    let params = new HttpParams();
+
+    params = params.append('projectType', searchData.projectType)
+      .append('page', pageIndex)
+      .append('size', pageSize);
+
+    if(searchData.titlePattern != undefined)
+      params = params.append('titlePattern', searchData.titlePattern);
+
+    if(searchData.coordinatorEmail != undefined)
+      params = params.append('coordinator', searchData.coordinatorEmail);
+
+    if(searchData.contributorEmail != undefined)
+      params = params.append('contributor', searchData.contributorEmail);
+
+    return this.http.get<GetProjectsResponse>(environment.BASE_API + path,
+      { params: params, headers: httpOptions.headers });
+
+  }
+
   updateProject(projectData: AddProjectData, id: string): Observable<GetProjectData>
   {
     let path: string = `/projects/${id}`;
@@ -65,9 +89,6 @@ export class ProjectService {
     return this.http.put<GetProjectData>(environment.BASE_API + path, projectData, httpOptions);
 
   }
-
-
-
 
   sendArchivingRequest(project: GetProjectData): Observable<GetProjectData>
   {

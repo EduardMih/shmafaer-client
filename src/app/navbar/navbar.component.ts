@@ -49,4 +49,13 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  getDisplayName(): string
+  {
+
+    return this.tokenAuthService.getUserData()!.firstname.concat(" ",
+      this.tokenAuthService.getUserData()!.lastname
+    )
+
+  }
+
 }

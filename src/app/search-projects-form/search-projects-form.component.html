@@ -1,0 +1,57 @@
+<div class="project-search-form" [formGroup]="searchForm">
+
+  <div class="search-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Search title</mat-label>
+      <input matInput
+             placeholder="Search title"
+
+             required
+             formControlName="titleSearch"
+      >
+    </mat-form-field>
+    <mat-checkbox formControlName="isTitleActive"></mat-checkbox>
+  </div>
+
+  <div class="search-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Coordinator</mat-label>
+      <input matInput
+             placeholder="Coordinator"
+             required
+             formControlName="coordinator"
+      >
+    </mat-form-field>
+    <mat-checkbox formControlName="isCoordinatorActive"></mat-checkbox>
+  </div>
+
+  <div class="search-row">
+    <mat-form-field appearance="fill">
+      <mat-label>Contributor</mat-label>
+      <input
+        matInput
+        placeholder="Contributor"
+        required
+        formControlName="contributor"
+
+      >
+    </mat-form-field>
+    <mat-checkbox formControlName="isContributorActive"></mat-checkbox>
+  </div>
+
+  <div class="search-row">
+  <mat-form-field appearance="fill">
+    <mat-label>Project type</mat-label>
+    <mat-select formControlName="projectType">
+      <mat-option *ngFor="let projectType of projectTypes" [value]="projectType">
+        {{projectType}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+    </div>
+  <button class="search-btn"
+          mat-raised-button
+          color="accent"
+          (click)="onSearch()"
+  >Search</button>
+</div>

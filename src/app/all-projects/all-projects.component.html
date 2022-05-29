@@ -3,6 +3,13 @@
   color="accent"
   (selectedTabChange)="tabChanged($event)">
   <mat-tab *ngFor="let tabLabel of tabLabels" label="{{tabLabel}}">
+    <div
+      *ngIf="isSearchTabSelected(tabLabel)"
+      class="search-container bg-dark text-white"
+    >
+      <h2 class="text-white m-3">Search projects</h2>
+      <app-search-projects-form (searchDataEvent)="setSearchData($event)"></app-search-projects-form>
+    </div>
 
 <div class="cards-container">
   <div *ngIf="data.length == 0" class="bg-dark m-5 p-5 text-white rounded">

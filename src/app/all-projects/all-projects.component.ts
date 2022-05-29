@@ -12,8 +12,9 @@ import {DownloadDialogComponent} from "../download-dialog/download-dialog.compon
 import {DownloadInfo} from "../_dtos/download-info.model";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {ProjectSearchData} from "../_utils/project-search-data";
 
-const possibleTabLabels: string[] = ["All projects", "Coordinated", "Collaborated", "Owned"];
+const possibleTabLabels: string[] = ["All projects", "Coordinated", "Collaborated", "Owned", "Search"];
 
 @Component({
   selector: 'app-all-projects',
@@ -24,6 +25,7 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
   tabLabels: string[] = [];//["All projects","Coordinated", "Collaborated", "Owned"];
   data: GetProjectData[] = [];
   resultsLength: number = 0;
+  searchData?: ProjectSearchData;
 
   constructor(private projectService: ProjectService,
               private authTokenService: AuthTokenService,
@@ -44,6 +46,8 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
         this.tabLabels.push(possibleTabLabels[2], possibleTabLabels[3]);
 
     }
+
+    this.tabLabels.push(possibleTabLabels[4]);
 
   }
 
@@ -66,6 +70,7 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
 
         }),
         map(data => {
+          //console.log(data)
 
           if(data === null)
             return [];
@@ -96,7 +101,7 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
 
   }
 
-  private fetchProjects(): Observable<GetProjectsResponse>
+  private fetchProjects(): Observable<GetProjectsResponse | null>
   {
     let selectedTabLabel = this.tabLabels[this.tabGroup.selectedIndex!];
 
@@ -112,7 +117,15 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
 
       return this.projectService.fetchUserProjects(this.paginator.pageIndex, this.paginator.pageSize, false, true);
 
-    return this.projectService.fetchUserProjects(this.paginator.pageIndex, this.paginator.pageSize, false, false)
+    if(selectedTabLabel == possibleTabLabels[3])
+
+      return this.projectService.fetchUserProjects(this.paginator.pageIndex, this.paginator.pageSize, false, false)
+
+    if((selectedTabLabel == possibleTabLabels[4]) && (this.searchData != null))
+
+      return this.projectService.searchProjects(this.searchData, this.paginator.pageIndex, this.paginator.pageSize);
+
+    return of(null);
 
   }
 
@@ -208,6 +221,25 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
   {
     this.router.navigate(['/updateProject', id])
   }
+
+  isSearchTabSelected(tabLabel: string): boolean
+  {
+
+    return tabLabel == possibleTabLabels[4];
+
+  }
+
+  setSearchData(searchData: ProjectSearchData): void
+  {
+    console.log(searchData)
+    this.searchData = searchData;
+
+    this.paginator.firstPage()
+
+    //to refresh even when already on first page but tabs changed
+    this.paginator.page.emit();
+  }
+
 
 
 }

@@ -46,6 +46,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectRatingComponent } from './project-rating/project-rating.component';
+import { SearchProjectsFormComponent } from './search-projects-form/search-projects-form.component';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { ProjectRatingComponent } from './project-rating/project-rating.componen
     UpdateProjectComponent,
     CreateProjectComponent,
     ProjectRatingComponent,
+    SearchProjectsFormComponent,
   ],
     imports: [
         BrowserModule,
