@@ -1,6 +1,12 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProjectSearchData} from "../_utils/project-search-data";
+import {debounceTime, distinctUntilChanged, Observable, startWith, switchMap} from "rxjs";
+import {MinimalistUserDetailsResponse} from "../_dtos/minimalist-user-details-response.model";
+import {UserService} from "../_services/user.service";
+import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+
+const PROFESSOR_ROLE = "PROFESSOR";
 
 @Component({
   selector: 'app-search-projects-form',
@@ -10,10 +16,12 @@ import {ProjectSearchData} from "../_utils/project-search-data";
 export class SearchProjectsFormComponent implements OnInit {
   projectTypes: string[] = ["ALL", "BACHELOR", "MASTERY", "DOCTORAL", "RESEARCH"];
   searchForm: FormGroup;
+  filteredCoordinators?: Observable<MinimalistUserDetailsResponse[]>
+  filteredContributors?: Observable<MinimalistUserDetailsResponse[]>;
 
   @Output() searchDataEvent = new EventEmitter<ProjectSearchData>();
 
-  constructor(private fb: FormBuilder)
+  constructor(private fb: FormBuilder, private userService: UserService)
   {
     this.searchForm = new FormGroup({
       isTitleActive:  new FormControl({value: true}),
@@ -35,7 +43,43 @@ export class SearchProjectsFormComponent implements OnInit {
         {value: this.projectTypes[0], disabled: false},
         Validators.required
       ),
-    })
+    });
+
+    this.filteredCoordinators = this.searchForm.get('coordinator')?.valueChanges.pipe(
+      startWith(''),
+      debounceTime(250),
+      distinctUntilChanged(),
+      switchMap(namePattern => {
+          if ((namePattern != "") && (typeof (namePattern) === "string")) {
+            console.log("Searching for " + namePattern, typeof (namePattern))
+
+            return this.userService.fetchUsersByNamePatternAndRole(namePattern, PROFESSOR_ROLE);
+
+          }
+
+          return [];
+
+        }
+      ));
+
+    // @ts-ignore
+    this.filteredContributors = this.searchForm.get('contributor').valueChanges.pipe(
+      startWith(''),
+      debounceTime(250),
+      distinctUntilChanged(),
+      switchMap(namePattern => {
+          if ((namePattern != "") && (typeof (namePattern) === "string"))
+          {
+            console.log("Searching for " + namePattern, typeof (namePattern))
+
+            return this.userService.fetchUsersByNamePatternAndRole(namePattern, "");
+
+          }
+
+          return [];
+
+        }
+      ));
   }
 
   ngOnInit(): void {
@@ -91,10 +135,16 @@ export class SearchProjectsFormComponent implements OnInit {
       projectType: this.searchForm.get('projectType')?.value
     };
 
-    //console.log(searchData);
+    console.log(searchData);
     //console.log(searchData.coordinatorEmail == null)
 
     this.searchDataEvent.emit(searchData);
+  }
+
+  selectedCoordinatorFct(event: MatAutocompleteSelectedEvent): void
+  {
+    console.log(event.option.value)
+    //this.searchForm.get('coordinator')?.setValue(event.option.value.email);
   }
 
 }
