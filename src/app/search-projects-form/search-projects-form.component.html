@@ -25,7 +25,7 @@
       <mat-autocomplete
         autoActiveFirstOption
         #auto="matAutocomplete"
-        (optionSelected)="selectedCoordinatorFct($event)">
+        >
         <mat-option *ngFor="let coordinator of filteredCoordinators | async" [value]="coordinator.email">
           {{coordinator.firstname}} {{coordinator.lastname}} ({{coordinator.email}})
         </mat-option>
@@ -47,7 +47,7 @@
       <mat-autocomplete
         autoActiveFirstOption
         #auto2="matAutocomplete"
-        (optionSelected)="selectedCoordinatorFct($event)">
+      >
         <mat-option *ngFor="let contributor of filteredContributors | async" [value]="contributor.email">
           {{contributor.firstname}} {{contributor.lastname}} ({{contributor.email}})
         </mat-option>

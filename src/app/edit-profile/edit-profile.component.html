@@ -1,0 +1,171 @@
+<div class="update-profile-container bg-dark">
+
+  <div *ngIf="isSuccessful" class="card-body p-5 text-center text-success">
+    {{successMessage}}
+  </div>
+
+  <div *ngIf="!isSuccessful">
+    <div *ngIf="isError" class="alert alert-danger">
+      {{errorMessage}}
+    </div>
+
+    <div class="p-5 text-center text-white">
+      <h2>Update profile</h2>
+    </div>
+    <form class="text-white" *ngIf="!isSuccessful" [formGroup]="userInfoForm" (ngSubmit)="onSubmitUserInfo()">
+
+      <div class="row p-3">
+
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Firstname</mat-label>
+            <input
+              matInput
+              formControlName="firstname"
+              type="email"
+              id="firstname"
+              placeholder="Firstname"
+
+            />
+
+          </mat-form-field>
+          <div *ngIf="(firstname?.errors?.['required']) && (firstname?.touched || firstname?.dirty)"
+               class="alert alert-danger">
+            Firstname is required.
+          </div>
+        </div>
+
+        <div class="col">
+          <mat-form-field appearance="outline">
+            <mat-label>Lastname</mat-label>
+            <input
+              matInput
+              formControlName="lastname"
+              type="email"
+              id="lastname"
+              placeholder="Lastname"
+            />
+          </mat-form-field>
+          <div *ngIf="(lastname?.errors?.['required']) && (lastname?.touched || lastname?.dirty)"
+               class="alert alert-danger">
+            Lastname is required.
+          </div>
+        </div>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          id="username"
+          placeholder="Email"
+        />
+      </mat-form-field>
+      <div *ngIf="(email?.invalid) && (email?.dirty || email?.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="email?.errors?.['required']">
+          Email is required.
+        </div>
+        <div *ngIf="email?.errors?.['email']">
+          Not an email format.
+        </div>
+      </div>
+
+
+      <button [disabled]="(!userInfoForm.valid) || (!userInfoForm.dirty)"
+              type="submit"
+              class="px-3 m-3 btn btn-primary"
+      >
+        Update profile
+      </button>
+
+    </form>
+
+    <form class="text-white" *ngIf="!isSuccessful" [formGroup]="passwordChangeForm" (ngSubmit)="onSubmitChangePass()">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Old Password</mat-label>
+        <input
+          matInput
+          formControlName="oldPassword"
+          type="text"
+          id="old-password"
+          placeholder="Old password"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>New Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="text"
+          id="password"
+          placeholder="New Password"
+        />
+      </mat-form-field>
+
+      <div *ngIf="(password?.invalid) && (password?.touched || password?.dirty)"
+           class="alert alert-danger"
+      >
+        <div *ngIf="(password?.errors?.['required']) && (password?.dirty ||password?.touched)"
+             class="myPassReq"
+        >
+          Password is required.
+        </div>
+        <div *ngIf="(password?.errors?.['hasCapital']) && (password?.dirty ||password?.touched)"
+             class="myPassReq"
+        >
+          Password must contain at least one capital case.
+        </div>
+        <div *ngIf="(password?.errors?.['hasSmall']) && (password?.dirty ||password?.touched)"
+             class="myPassReq"
+        >
+          Password must contain at least one small case.
+        </div>
+        <div *ngIf="(password?.errors?.['hasSpecial']) && (password?.dirty ||password?.touched)"
+             class="myPassReq"
+        >
+          Password must contain at least one special character.
+        </div>
+        <div *ngIf="(password?.errors?.['minlength']) && (password?.dirty ||password?.touched)"
+             class="myPassReq"
+        >
+          Password must have at least 5 characters.
+        </div>
+
+        <div *ngIf="(password?.errors?.['hasNumber']) && (password?.dirty ||password?.touched)"
+             class="myPassReq"
+        >
+          Password must have at least one number!
+        </div>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm Password</mat-label>
+        <input
+          matInput
+          formControlName="confirmPassword"
+          type="text"
+          id="confirm-pass"
+          placeholder="Confirm Password"
+        />
+      </mat-form-field>
+      <div *ngIf="(passwordChangeForm.errors?.['notSamePasswords']) && (passwordChangeForm.touched || passwordChangeForm.dirty)"
+           class="cross-validation-error-message alert alert-danger">
+        Passwords don't match!
+      </div>
+
+      <button [disabled]="!passwordChangeForm.valid"
+              type="submit"
+              class="px-3 m-3 btn btn-primary"
+      >
+        Change Password
+      </button>
+
+    </form>
+  </div>
+</div>

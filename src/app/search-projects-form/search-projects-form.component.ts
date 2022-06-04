@@ -123,6 +123,16 @@ export class SearchProjectsFormComponent implements OnInit {
         }
       }
     );
+
+    this.searchForm.get('projectType')?.valueChanges.subscribe(
+      value =>
+      {
+        if(value == this.projectTypes[4])
+          this.searchForm.get('isCoordinatorActive')?.setValue(false);
+
+
+      }
+    )
   }
 
   onSearch(): void
@@ -135,16 +145,9 @@ export class SearchProjectsFormComponent implements OnInit {
       projectType: this.searchForm.get('projectType')?.value
     };
 
-    console.log(searchData);
+    //console.log(searchData);
     //console.log(searchData.coordinatorEmail == null)
 
     this.searchDataEvent.emit(searchData);
   }
-
-  selectedCoordinatorFct(event: MatAutocompleteSelectedEvent): void
-  {
-    console.log(event.option.value)
-    //this.searchForm.get('coordinator')?.setValue(event.option.value.email);
-  }
-
 }

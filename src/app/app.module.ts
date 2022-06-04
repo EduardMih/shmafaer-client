@@ -47,6 +47,7 @@ import { UpdateProjectComponent } from './update-project/update-project.componen
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectRatingComponent } from './project-rating/project-rating.component';
 import { SearchProjectsFormComponent } from './search-projects-form/search-projects-form.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { SearchProjectsFormComponent } from './search-projects-form/search-proje
     CreateProjectComponent,
     ProjectRatingComponent,
     SearchProjectsFormComponent,
+    EditProfileComponent,
   ],
     imports: [
         BrowserModule,
