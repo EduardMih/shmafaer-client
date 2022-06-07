@@ -6,4 +6,5 @@ export interface Recommendation {
   language: string,
   shBrowseUrl: string,
   topics: string[] | null,
+  recommendedFor: string
 }

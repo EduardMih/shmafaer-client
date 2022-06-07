@@ -11,8 +11,11 @@
       </mat-card-title>
 
       <mat-card-subtitle>
-        <mat-icon class="yellow-star">star</mat-icon> {{recommendation.stargazersCount}} (on GitHub)
+        <div>Recommended based on: {{recommendation.recommendedFor}}</div>
       </mat-card-subtitle>
+      <div class="github-stars">
+        <mat-icon class="yellow-star">star</mat-icon> {{recommendation.stargazersCount}} (on GitHub)
+      </div>
 
     </mat-card-header>
 

@@ -46,7 +46,14 @@ mat-paginator
   color: yellow;
 }
 
-mat-card-subtitle.mat-card-subtitle {
+mat-card-header
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.github-stars {
   display: flex;
   align-items: center;
 }
