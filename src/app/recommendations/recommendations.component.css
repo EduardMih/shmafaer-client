@@ -1,0 +1,78 @@
+.cards-container
+{
+  width: 100%;
+  margin-bottom: 100px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-content
+{
+  display: flex;
+  flex-direction: row;
+}
+
+mat-card
+{
+  margin: 20px;
+  width: 80%;
+}
+
+.left
+{
+  padding: 10px;
+}
+
+.right
+{
+  padding: 10px;
+  border-left: 1px solid rgba(255, 255, 255, .25);
+}
+
+mat-paginator
+{
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+}
+.yellow-star
+{
+  color: yellow;
+}
+
+mat-card-subtitle.mat-card-subtitle {
+  display: flex;
+  align-items: center;
+}
+
+
+@media screen and (max-width: 700px)
+{
+  mat-paginator
+  {
+    transform: translate(-50%, 0) !important;
+  }
+}
+
+.topic-list
+{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topic-item
+{
+
+  border-radius: 15px;
+  background: darkslateblue;
+
+  padding: 0.5em 1em;
+  margin: 2px;
+}

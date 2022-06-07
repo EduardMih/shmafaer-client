@@ -1,0 +1,67 @@
+<div class="cards-container">
+  <div *ngIf="data.length == 0" class="bg-dark m-5 p-5 text-white rounded">
+    No projects for this category
+  </div>
+
+  <mat-card role="group" class="bg-dark" *ngFor="let recommendation of data">
+    <mat-card-header>
+
+      <mat-card-title>
+        {{recommendation.name}}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        <mat-icon class="yellow-star">star</mat-icon> {{recommendation.stargazersCount}} (on GitHub)
+      </mat-card-subtitle>
+
+    </mat-card-header>
+
+    <hr>
+
+    <mat-card-content>
+      <div class="my-content">
+
+        <div class="left">
+
+          <div>
+            <h3 class="m-0">Primary Language: {{recommendation.language || "Unknown"}}</h3>
+          </div>
+
+
+
+          <div *ngIf="hasTopics(recommendation)">
+            <hr>
+            <h3>Topics</h3>
+            <ul class="topic-list">
+              <li class="topic-item" *ngFor="let topic of recommendation.topics">
+                {{topic}}
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="right">
+          <h3>Description</h3>
+          {{recommendation.description}}
+        </div>
+
+      </div>
+
+    </mat-card-content>
+
+    <hr>
+
+    <mat-card-actions align="end">
+      <a mat-raised-button color="primary" href="{{recommendation.shBrowseUrl}}" target="_blank">Open On SH</a>
+      <a mat-raised-button color="accent" href="{{recommendation.htmlUrl}}" target="_blank">Open On GitHub</a>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<mat-paginator [pageSizeOptions]="[3, 5, 7]"
+               showFirstLastButtons
+               [length]="resultsLength"
+               #myPaginatorRecommendations
+>
+</mat-paginator>

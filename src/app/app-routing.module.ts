@@ -13,6 +13,7 @@ import {AllProjectsComponent} from "./all-projects/all-projects.component";
 import {HomePageComponent} from "./home-page/home-page.component";
 import {UpdateProjectComponent} from "./update-project/update-project.component";
 import {CreateProjectComponent} from "./create-project/create-project.component";
+import {RecommendationsComponent} from "./recommendations/recommendations.component";
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
     data: {expectedRoles: ['ADMIN']}},
   { path: 'adminDashboard/addUser', component: AddUserComponent },
   { path: 'viewProjects', component: AllProjectsComponent},
+  { path: 'recommendations', component: RecommendationsComponent },
   { path: 'notEnoughPermissions', component: NotEnoughPermissionsComponent }
 ];
 
