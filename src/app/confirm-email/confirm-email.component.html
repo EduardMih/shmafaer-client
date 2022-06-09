@@ -1,0 +1,13 @@
+<div class="bg-dark text-white confirm-message-box">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div *ngIf="!isLoading">
+    <div *ngIf="isConfirmationSuccessful">
+      Email confirmed successfully! You can now login!
+    </div>
+    <div *ngIf="!isConfirmationSuccessful">
+      Something went wrong!
+      <button mat-raised-button color="accent" class="m-3">Resend</button>
+    </div>
+  </div>
+
+</div>

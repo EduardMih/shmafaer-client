@@ -1,0 +1,10 @@
+.confirm-message-box
+{
+  margin: 20px auto;
+  padding: 20px;
+  width: 50%;
+}
+mat-spinner
+{
+  margin: auto;
+}

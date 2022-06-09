@@ -14,6 +14,7 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {UpdateProjectComponent} from "./update-project/update-project.component";
 import {CreateProjectComponent} from "./create-project/create-project.component";
 import {RecommendationsComponent} from "./recommendations/recommendations.component";
+import {ConfirmEmailComponent} from "./confirm-email/confirm-email.component";
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'adminDashboard/addUser', component: AddUserComponent },
   { path: 'viewProjects', component: AllProjectsComponent},
   { path: 'recommendations', component: RecommendationsComponent },
-  { path: 'notEnoughPermissions', component: NotEnoughPermissionsComponent }
+  { path: 'notEnoughPermissions', component: NotEnoughPermissionsComponent },
+  { path: 'confirmAccount', component: ConfirmEmailComponent }
 ];
 
 @NgModule({
