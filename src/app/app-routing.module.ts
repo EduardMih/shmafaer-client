@@ -15,6 +15,8 @@ import {UpdateProjectComponent} from "./update-project/update-project.component"
 import {CreateProjectComponent} from "./create-project/create-project.component";
 import {RecommendationsComponent} from "./recommendations/recommendations.component";
 import {ConfirmEmailComponent} from "./confirm-email/confirm-email.component";
+import {PasswordResetComponent} from "./password-reset/password-reset.component";
+import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
@@ -31,7 +33,9 @@ const routes: Routes = [
   { path: 'viewProjects', component: AllProjectsComponent},
   { path: 'recommendations', component: RecommendationsComponent },
   { path: 'notEnoughPermissions', component: NotEnoughPermissionsComponent },
-  { path: 'confirmAccount', component: ConfirmEmailComponent }
+  { path: 'confirmAccount', component: ConfirmEmailComponent },
+  { path: 'resetPassword', component: PasswordResetComponent },
+  { path: 'forgotPassword', component: ForgotPasswordComponent}
 ];
 
 @NgModule({

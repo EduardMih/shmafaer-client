@@ -50,6 +50,8 @@ import { SearchProjectsFormComponent } from './search-projects-form/search-proje
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -75,6 +77,8 @@ import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
     EditProfileComponent,
     RecommendationsComponent,
     ConfirmEmailComponent,
+    PasswordResetComponent,
+    ForgotPasswordComponent,
   ],
     imports: [
         BrowserModule,

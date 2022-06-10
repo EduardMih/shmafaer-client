@@ -35,10 +35,7 @@ export class ConfirmEmailComponent implements OnInit {
 
       }
     })
-
-
-
-    console.log(token)
+    //console.log(token)
   }
 
 }
