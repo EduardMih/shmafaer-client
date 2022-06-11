@@ -133,7 +133,7 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
   {
     // to be replaced with status check
 
-    return true;
+    return project.status == "SUCCEEDED"
 
   }
 

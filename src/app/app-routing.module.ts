@@ -17,6 +17,7 @@ import {RecommendationsComponent} from "./recommendations/recommendations.compon
 import {ConfirmEmailComponent} from "./confirm-email/confirm-email.component";
 import {PasswordResetComponent} from "./password-reset/password-reset.component";
 import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
+import {EditProfileComponent} from "./edit-profile/edit-profile.component";
 
 const routes: Routes = [
   { path: "", component: HomePageComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'notEnoughPermissions', component: NotEnoughPermissionsComponent },
   { path: 'confirmAccount', component: ConfirmEmailComponent },
   { path: 'resetPassword', component: PasswordResetComponent },
-  { path: 'forgotPassword', component: ForgotPasswordComponent}
+  { path: 'forgotPassword', component: ForgotPasswordComponent},
+  { path: "profile", component: EditProfileComponent}
 ];
 
 @NgModule({
