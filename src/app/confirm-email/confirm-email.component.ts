@@ -11,6 +11,7 @@ import {ConfirmEmailService} from "../_services/confirm-email.service";
 export class ConfirmEmailComponent implements OnInit {
   isConfirmationSuccessful: boolean = false;
   isLoading: boolean = true;
+  isResent: boolean = false
   message: string = "";
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -31,11 +32,29 @@ export class ConfirmEmailComponent implements OnInit {
       error: err => {
         this.isConfirmationSuccessful = false;
         this.isLoading = false;
-        this.message = err.error.errorMessage;
+        this.message = err.error.errors.errorMessage;
 
       }
     })
     //console.log(token)
+  }
+
+  onResend(): void
+  {
+    let token = this.activatedRoute.snapshot.queryParamMap.get('token')
+
+    this.confirmEmailService.resendToken(token!).subscribe({
+      next: value => {
+        this.message = value.message;
+        this.isResent = true;
+      },
+      error: err => {
+        this.isResent = true;
+        this.message = err.error.errors.errorMessage;
+      }
+    })
+
+
   }
 
 }

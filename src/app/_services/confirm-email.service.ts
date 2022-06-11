@@ -27,4 +27,14 @@ export class ConfirmEmailService {
     return this.http.patch<ConfirmEmailResp>(environment.BASE_API + path, data, httpOptions);
 
   }
+
+  resendToken(token: string): Observable<ConfirmEmailResp>
+  {
+    let path: string = "/confirmAccount/resendToken";
+    let data: ConfirmEmailReq = {
+      token: token
+    }
+    return this.http.post<ConfirmEmailResp>(environment.BASE_API + path, data, httpOptions);
+
+  }
 }
