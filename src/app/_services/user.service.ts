@@ -6,6 +6,8 @@ import {environment} from "../../environments/environment";
 import {UserDetails} from "../_dtos/user-details.model";
 import {GetUsersResponse} from "../_dtos/get-users-response.model";
 import {UpdateUserRoles} from "../_dtos/update-user-roles.model";
+import {RegisterResponse} from "../_dtos/register-response.model";
+import {RegisterUser} from "../_dtos/register-user.model";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -17,6 +19,15 @@ const httpOptions = {
 export class UserService {
 
   constructor(private http: HttpClient) { }
+
+  createUser(newUser: RegisterUser): Observable<RegisterResponse>
+  {
+
+    let path: string = "/users/createUser"
+
+    return this.http.post<RegisterResponse>(environment.BASE_API + path, newUser, httpOptions);
+
+  }
 
   fetchUsersByNamePatternAndRole(namePattern: string, role: string): Observable<MinimalistUserDetailsResponse[]>
   {

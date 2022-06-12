@@ -6,6 +6,7 @@ import {passwordPatternCheck} from "../_validators/password-min-security.directi
 import {passwordMatchValidator} from "../_validators/passwords-match.directive";
 import {RegisterUser} from "../_dtos/register-user.model";
 import {MatSelectChange} from "@angular/material/select";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-add-user',
@@ -19,12 +20,16 @@ export class AddUserComponent implements OnInit {
   successMessage: String = "";
   errorMessage: String = "";
   isError: boolean = false;
-  registerForm: FormGroup = this.initializeForm();
+  registerForm: FormGroup;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private router: Router
-  ) { }
+              private router: Router,
+              private userService: UserService
+  )
+  {
+    this.registerForm = this.initializeForm();
+  }
 
   ngOnInit(): void {
 
@@ -63,34 +68,15 @@ export class AddUserComponent implements OnInit {
       this.registerForm.value.studentID
     )
 
-    this.authService.register(newUser).subscribe({
-      next:data => {
+    console.log(newUser)
+    this.userService.createUser(newUser).subscribe({
+      next: value => {
         this.isSuccessful = true;
-        this.successMessage = `Congratulations ${data['firstname']} ${data['lastname']}! Your account was successfully created!`;
+        this.successMessage = `User ${value.firstname} ${value.lastname} was created successfully. A confirmation email has been sent`;
       },
       error: err => {
-        //console.log("aici")
-        console.log(err)
-        if (err.status == 400)
-        {
-          this.isError = true;
-
-          if('Register' in err.error.errors)
-            this.errorMessage = err.error.errors['Register'];
-
-          else
-
-            this.errorMessage = JSON.stringify(err.error.errors)
-
-        }
-
-        else
-
-        {
-
-          this.router.navigate(['/error'])
-
-        }
+        this.isError = true;
+        this.errorMessage = err.error.errors.Register;
       }
     })
   }

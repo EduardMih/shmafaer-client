@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {RegisterUser} from "../_dtos/register-user.model";
 import {LoginResponse} from "../_dtos/login-response.model";
+import {RegisterResponse} from "../_dtos/register-response.model";
 
 
 const httpOptions = {
@@ -29,13 +30,13 @@ export class AuthService {
 
   }
 
-  register(newUser: RegisterUser): Observable<any>
+  register(newUser: RegisterUser): Observable<RegisterResponse>
   {
 
     //newUser.roleName = Array.of(newUser.roleName);
     console.log(newUser)
 
-    return this.http.post(environment.BASE_API + "/register",
+    return this.http.post<RegisterResponse>(environment.BASE_API + "/register",
       newUser, httpOptions)
 
   }
