@@ -1,56 +1,59 @@
-mat-sidenav-container
-{
-  height: 90vh;
-  margin: 20px 20px 0;
-  border-radius: 15px;
-
-}
-
-
-mat-sidenav
-{
-  border-radius: 10px;
-  text-align: center;
-  margin: 20px;
-  padding: 10px;
-}
-
-.content
-{
-
-  position: relative;
-
-  min-height: calc(90vh - 40px);
-  border-radius: 10px;
-  margin: 20px 20px 20px 32px;
-
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /*background: red;*/
-
-}
-
-.toggle-btn
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 5px;
-}
-
-mat-nav-list
-{
-  display: flex;
-  flex-direction: column;
-}
-
 app-all-users
 {
   width: 100%;
 }
 
+app-projects-stats
+{
+  width: 100%;
+}
 
+app-add-user
+{
+  width: 50%;
+}
+
+.admin-dashboard-container
+{
+  margin: 20px auto;
+  width: 95%;
+  min-height: 80vh;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  background: black;
+}
+
+.side-panel
+{
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  border-radius: 15px;
+  margin-right: 10px;
+
+}
+
+.main-content
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2%;
+  border-radius: 15px;
+  width: 100%;
+}
+
+@media screen and (max-width: 600px)
+{
+  .side-panel
+  {
+    width: 100%;
+    margin: 0;
+  }
+  app-add-user
+  {
+    width: 100%;
+  }
+}
 

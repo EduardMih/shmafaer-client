@@ -1,31 +1,33 @@
-<mat-sidenav-container autosize>
-  <mat-sidenav #sidenav [opened]="!isSmallScreen" mode="side" class="mat-elevation-z8 bg-dark" >
-    <mat-nav-list>
-      <button mat-button matSubheader (click)="sidenav.toggle()">Admin Dashboard</button>
-      <mat-divider></mat-divider>
+<div class="admin-dashboard-container">
+  <div class="side-panel bg-dark text-white" *ngIf="!isMenuCollapsed">
+    <button mat-button matSubheader (click)="collapse()">Admin Dashboard</button>
 
-      <button mat-button class="menu-button" (click)="setActiveComp(1)">
-        <mat-icon>person_add</mat-icon>
-        <span>Add User</span>
-      </button>
+    <hr>
 
-      <button mat-button (click)="setActiveComp(2)">
-        <mat-icon>group</mat-icon>
-        <span>All users</span>
-      </button>
-    </mat-nav-list>
+    <button mat-button class="menu-button" (click)="selectComponent(1)">
+      <mat-icon>person_add</mat-icon>
+      <span>Add User</span>
+    </button>
 
-  </mat-sidenav>
+    <button mat-button (click)="selectComponent(2)">
+      <mat-icon>group</mat-icon>
+      <span>All users</span>
+    </button>
 
-  <mat-sidenav-content>
-    <div class="content mat-elevation-z8">
-      <button mat-button class="toggle-btn" *ngIf="!sidenav.opened" (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
+    <button mat-button (click)="selectComponent(3)">
+      <mat-icon>line</mat-icon>
+      <span>Projects Stats</span>
+    </button>
+  </div>
 
-      <app-add-user *ngIf="activeComp == 1"></app-add-user>
-      <app-all-users *ngIf="activeComp == 2"></app-all-users>
+  <div class="main-content bg-dark text-white" *ngIf="isContentShown">
+    <button mat-button *ngIf="isMenuCollapsed" (click)="collapse()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <app-add-user *ngIf="activeComp == 1"></app-add-user>
+    <app-all-users *ngIf="activeComp == 2"></app-all-users>
+    <app-projects-stats *ngIf="activeComp == 3"></app-projects-stats>
+  </div>
+</div>
 
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+

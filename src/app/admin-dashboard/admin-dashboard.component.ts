@@ -10,6 +10,8 @@ import {MatDrawerMode, MatSidenav} from "@angular/material/sidenav";
 export class AdminDashboardComponent implements OnInit{
   mobileQuery: MediaQueryList;
   isSmallScreen: boolean = false;
+  isMenuCollapsed: boolean = false;
+  isContentShown: boolean = true;
 
   activeComp: number = 1;
 
@@ -28,6 +30,8 @@ export class AdminDashboardComponent implements OnInit{
         {
           //this.sidenav.mode= 'over';
           this.sidenav?.close();
+          this.isMenuCollapsed = true;
+          this.isSmallScreen = true;
         }
 
         else
@@ -35,6 +39,8 @@ export class AdminDashboardComponent implements OnInit{
         {
           //this.sidenav.mode = 'side';
           this.sidenav?.open()
+          this.isMenuCollapsed = false;
+          this.isSmallScreen = false;
         }
 
     })
@@ -48,6 +54,32 @@ export class AdminDashboardComponent implements OnInit{
     this.activeComp = activeComp;
   }
 
+  collapse(): void
+  {
+    this.isMenuCollapsed = !this.isMenuCollapsed;
+
+
+    if(this.isSmallScreen)
+    {
+
+      if(this.isMenuCollapsed)
+        this.isContentShown = true;
+
+      else
+
+        this.isContentShown = false;
+    }
+
+
+  }
+
+  selectComponent(activeComp: number): void
+  {
+    this.activeComp = activeComp;
+
+    if(this.isSmallScreen)
+      this.collapse();
+  }
 
 
 }

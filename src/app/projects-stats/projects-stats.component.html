@@ -1,0 +1,27 @@
+<mat-tab-group (selectedTabChange)="tabChanged($event)">
+  <mat-tab label="Projects Type Stats">
+    <div class="chart-container">
+      <div *ngIf="isError" class="alert alert-danger">
+        Could not get stats data...
+      </div>
+
+      <canvas baseChart *ngIf="!isError"
+            [data]="projectsTypesData"
+            [type]="'pie'"
+            [options]="projectsTypesChartOptions"
+      >
+      </canvas>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Archived Projects Stats">
+    <div class="chart-container">
+      <canvas *ngIf="!isError" baseChart
+              [data]="archivedProjectsData"
+              [type]="'bar'"
+              [options]="archivedProjectsChartOptions"
+      >
+      </canvas>
+    </div>
+  </mat-tab>
+</mat-tab-group>

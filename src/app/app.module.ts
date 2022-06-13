@@ -52,6 +52,8 @@ import { RecommendationsComponent } from './recommendations/recommendations.comp
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { NgChartsModule } from 'ng2-charts';
+import { ProjectsStatsComponent } from './projects-stats/projects-stats.component';
 
 
 @NgModule({
@@ -79,6 +81,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     ConfirmEmailComponent,
     PasswordResetComponent,
     ForgotPasswordComponent,
+    ProjectsStatsComponent,
   ],
     imports: [
         BrowserModule,
@@ -109,7 +112,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
         MatGridListModule,
         MatTabsModule,
         MatProgressSpinnerModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        NgChartsModule,
     ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
