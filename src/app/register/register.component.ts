@@ -6,6 +6,7 @@ import {passwordMatchValidator} from "../_validators/passwords-match.directive";
 import {passwordPatternCheck} from "../_validators/password-min-security.directive";
 import {Router} from "@angular/router";
 import {AuthTokenService} from "../_services/auth-token.service";
+import {MatSelectChange} from "@angular/material/select";
 
 
 @Component({
@@ -99,11 +100,12 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  changeSelect(event: any)
+  changeSelect(event: MatSelectChange)
   {
-    this.isStudent = event?.target?.value == 'STUDENT';
+    this.isStudent = event.value == "STUDENT";
+    //console.log(event.value)
 
-    console.log(this.isStudent)
+    //console.log(this.isStudent)
 
     if(this.isStudent)
     {

@@ -1,12 +1,7 @@
-<section class="vh-100">
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-5">
-        <div class="card bg-dark text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+<div class="login-container bg-dark text-white">
 
-            <div class="p-5">
-              <h3>Login</h3>
+            <div class="title">
+              <h2>Login</h2>
             </div>
 
             <div *ngIf="!isSuccessful" class="alert alert-danger">
@@ -15,17 +10,16 @@
 
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-              <div class="form-group mb-4">
-                <label class="pb-3" for="username">Username (Email)</label>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Username (Email)</mat-label>
                 <input
+                  matInput
                   type="email"
-                  id="username"
-                  class="form-control"
                   placeholder="Email"
                   formControlName="email"
                   required
                 />
-              </div>
+              </mat-form-field>
 
               <div *ngIf="(email?.invalid) && (email?.dirty || email?.touched)"
                    class="alert alert-danger">
@@ -38,17 +32,16 @@
                 </div>
               </div>
 
-              <div class="form-group mb-4">
-                <label class="pb-3" for="password">Password</label>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Password</mat-label>
                 <input
+                  matInput
                   type="text"
-                  id="password"
-                  class="form-control"
                   placeholder="Password"
                   formControlName="password"
                   required
                 />
-              </div>
+              </mat-form-field>
 
               <div *ngIf="(password?.errors?.['required']) && (password?.dirty ||password?.touched)"
                    class="alert alert-danger"
@@ -56,18 +49,11 @@
                 Password is required.
               </div>
 
-              <div class="col d-flex justify-content-between">
-                <button [disabled]="!loginForm.valid" type="submit" class="px-3 btn btn-primary">Login</button>
-                <button routerLink="/register" type="button" class="px-3 btn btn-primary">Register</button>
-                <button routerLink="/forgotPassword" type="button" class="px-3 btn btn-primary">Forgot Password?</button>
+              <div class="actions-container">
+                <button [disabled]="!loginForm.valid" type="submit" class="m-3 btn btn-primary">Login</button>
+                <button routerLink="/register" type="button" class="m-3 btn btn-primary">Register</button>
+                <button routerLink="/forgotPassword" type="button" class="m-3 btn btn-primary">Forgot Password?</button>
               </div>
             </form>
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</section>
-
+</div>

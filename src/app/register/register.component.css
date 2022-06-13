@@ -1,3 +1,9 @@
+.register-container
+{
+  margin: 50px auto;
+  width: 50%;
+  border-radius: 25px;
+}
 .myPassReq
 {
   padding: 2px;
@@ -7,7 +13,22 @@
 
 }
 
-.alert
+mat-form-field
 {
+  width: 100%;
+}
+
+mat-label
+{
+  color: white;
+}
+
+@media screen and (max-width: 850px)
+{
+  .register-container
+  {
+    width: 100%;
+    border-radius: 0;
+  }
 
 }

@@ -1,0 +1,44 @@
+.full-width
+{
+  width: 100%;
+}
+
+mat-label
+{
+  color: white;
+}
+
+.login-container
+{
+  margin: 50px auto;
+  padding: 5%;
+  width: 50%;
+
+  border-radius: 25px;
+}
+
+.actions-container
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.title
+{
+  text-align: center;
+}
+
+@media screen and (max-width: 850px)
+{
+  .login-container
+  {
+    width: 100%;
+    border-radius: 0;
+  }
+  .actions-container
+  {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
