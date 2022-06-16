@@ -1,0 +1,122 @@
+.homepage-container
+{
+  margin: 10% auto;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.presentation-container
+{
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  padding-left: 5%;
+}
+.title-container
+{
+  color: white;
+  font-size: 500%;
+  line-height: normal;
+  text-align: center;
+  padding-bottom: 10%;
+  padding-top: 10%;
+}
+
+.description-container
+{
+  color: white;
+  font-size: 200%;
+  line-height: normal;
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+hr
+{
+  color: white;
+}
+
+.actions-container
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 20px;
+}
+
+.actions-container button
+{
+  margin: 20px;
+  padding: 5px 30px;
+}
+
+.action
+{
+  width: 100%;
+  color: white;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 20px 0 20px 20px;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 150%;
+}
+
+.functionalities-container
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 5%;
+}
+
+mat-card
+{
+  background: transparent;
+  margin: 5px;
+  border: 1px solid white;
+}
+
+@media screen and (max-width: 650px)
+{
+  .homepage-container
+  {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .content-container
+  {
+    flex-direction: column;
+  }
+
+  .presentation-container
+  {
+    border-left: 0;
+    padding-left: 5%;
+  }
+
+}
+
+@media screen and (max-width: 1200px)
+{
+  .homepage-container
+  {
+    width: 75%;
+  }
+  .functionalities-container
+  {
+    flex-direction: column;
+  }
+}
+
+

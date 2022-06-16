@@ -37,7 +37,8 @@ const routes: Routes = [
   { path: 'confirmAccount', component: ConfirmEmailComponent },
   { path: 'resetPassword', component: PasswordResetComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent},
-  { path: "profile", component: EditProfileComponent}
+  { path: "profile", component: EditProfileComponent},
+  { path: 'home', component: HomePageComponent}
 ];
 
 @NgModule({
