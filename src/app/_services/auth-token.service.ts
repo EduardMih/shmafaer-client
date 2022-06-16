@@ -5,6 +5,8 @@ import {MinimalistUserDetailsResponse} from "../_dtos/minimalist-user-details-re
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
+const REFRESH_TOKEN_KEY = 'auth-refreshToken';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +54,7 @@ export class AuthTokenService {
   public saveUserData(data: LoginResponse)
   {
     this.saveToken(data.jwtToken);
+    this.saveRefreshToken(data.refreshToken);
     this.saveAdditionalUserData(data);
 
   }
@@ -83,6 +86,19 @@ export class AuthTokenService {
   public logout(): void
   {
     window.localStorage.clear();
+  }
+
+  public saveRefreshToken(refreshToken: string)
+  {
+    window.localStorage.removeItem(REFRESH_TOKEN_KEY);
+    window.localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+  }
+
+  public getRefreshToken(): string | null
+  {
+
+    return window.localStorage.getItem(REFRESH_TOKEN_KEY);
+
   }
 
 }

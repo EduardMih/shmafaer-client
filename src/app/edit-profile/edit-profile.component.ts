@@ -6,7 +6,7 @@ import {AuthTokenService} from "../_services/auth-token.service";
 import {UserDetails} from "../_dtos/user-details.model";
 import {Router} from "@angular/router";
 import {UserUpdateInfo} from "../_utils/user-update-info.model";
-import {UpdatePassword} from "../_utils/update-password.modell";
+import {UpdatePassword} from "../_utils/update-password.model";
 import {ProfileService} from "../_services/profile.service";
 
 @Component({
@@ -122,6 +122,7 @@ export class EditProfileComponent implements OnInit {
         this.isSuccessful = true;
         this.successMessage = "Password changed successfully"
         console.log(value);
+        this.router.navigate(['/login'])
       },
       error: err => {
         this.isError = true;

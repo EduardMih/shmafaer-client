@@ -4,7 +4,7 @@ import {UserUpdateInfo} from "../_utils/user-update-info.model";
 import {UserDetails} from "../_dtos/user-details.model";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
-import {UpdatePassword} from "../_utils/update-password.modell";
+import {UpdatePassword} from "../_utils/update-password.model";
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'}),

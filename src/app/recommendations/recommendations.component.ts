@@ -48,7 +48,7 @@ export class RecommendationsComponent implements OnInit, AfterViewInit {
 
   hasTopics(recommendation: Recommendation): boolean
   {
-    console.log(recommendation)
+    //console.log(recommendation)
 
     return recommendation.topics != null;
 

@@ -40,4 +40,15 @@ export class AuthService {
       newUser, httpOptions)
 
   }
+
+  refreshToken(token: string): Observable<LoginResponse>
+  {
+    let path: string = "/refreshToken"
+
+    return this.http.post<LoginResponse>(environment.BASE_API + path, {
+      refreshToken: token
+    },
+      httpOptions);
+
+  }
 }
