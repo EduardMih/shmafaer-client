@@ -131,7 +131,6 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
 
   isDownloadable(project: GetProjectData): boolean
   {
-    // to be replaced with status check
 
     return project.status == "SUCCEEDED"
 

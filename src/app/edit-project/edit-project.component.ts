@@ -144,20 +144,6 @@ export class EditProjectComponent implements OnInit {
     }
   }
 
-  /*add(event: MatChipInputEvent): void
-  {
-    const collaborator = (event.value || '').trim();
-
-    if((collaborator) && (collaborator in this.collaborators))
-      this.selectedCollaborators.add(collaborator);
-
-    event.chipInput!.clear();
-    this.collaboratorsCtrl.setValue(null);
-
-    if(this.selectedCollaborators.size > 0)
-      this.collaboratorsCtrl.setErrors(null);
-  }*/
-
   remove(collaborator: MinimalistUserDetailsResponse): void
   {
     this.selectedCollaborators.delete(collaborator);
@@ -197,42 +183,16 @@ export class EditProjectComponent implements OnInit {
 
       projectType: this.secondFormGroup.value.projectType,
 
-      // to be replaced with email from token
-      //ownerEmail: "hamza.edw@gmail.com",
-
       coordinatorEmail: this.selectedCoordinator?.email,
 
       collaboratorsEmail: Array.from(this.selectedCollaborators, (user) => user.email)
 
     }
 
-    //this.isSubmitted = true;
-
     data = this.clearUnnecessaryProjectData(data);
 
     this.projectEvent.emit(data);
 
-    /*
-    this.projectService.addProject(data).subscribe({
-      next: value => {
-        this.isSuccessful = true;
-        this.requestMessage = value.message;
-      },
-      error: err => {
-        if(err.status == 400)
-        {
-          this.isSuccessful = false;
-          console.log(err)
-          this.requestMessage = err.error.errors.errorMessage;
-        }
-
-        else
-
-          this.router.navigate(['/error']);
-
-      }
-    });
-    */
   }
 
   clearUnnecessaryProjectData(project: AddProjectData): AddProjectData

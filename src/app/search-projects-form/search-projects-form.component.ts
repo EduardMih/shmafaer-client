@@ -145,9 +145,6 @@ export class SearchProjectsFormComponent implements OnInit {
       projectType: this.searchForm.get('projectType')?.value
     };
 
-    //console.log(searchData);
-    //console.log(searchData.coordinatorEmail == null)
-
     this.searchDataEvent.emit(searchData);
   }
 }
