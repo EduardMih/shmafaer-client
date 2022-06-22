@@ -93,7 +93,8 @@ export class AllProjectsComponent implements OnInit, AfterViewInit{
 
   tabChanged(event: MatTabChangeEvent): void
   {
-    this.paginator.firstPage()
+    this.paginator.firstPage();
+    this.searchData = undefined;
 
     //to refresh even when already on first page but tabs changed
     this.paginator.page.emit();
