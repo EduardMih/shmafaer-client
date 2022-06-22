@@ -8,6 +8,9 @@
 
 .dropdown-menu
 {
-  background: red;
-
+  background: darkslateblue;
+}
+.dropdown-item
+{
+  color:white;
 }

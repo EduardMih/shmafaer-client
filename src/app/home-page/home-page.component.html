@@ -3,7 +3,7 @@
 </div>
 <div class="homepage-container">
   <div class="content-container">
-  <div class="actions-container">
+  <div class="actions-container" *ngIf="!isLoggedIn()">
     <div class="action" routerLink="/login">
       Login
       <mat-icon>arrow_right</mat-icon>
@@ -23,10 +23,10 @@
       <mat-card>
         <mat-card-header>
           <mat-card-title>Manage projects</mat-card-title>
-          <mat-icon mat-card-avatar></mat-icon>
+          <mat-icon mat-card-avatar>manage</mat-icon>
         </mat-card-header>
         <mat-card-content>
-          <p>Professors can chose what projects they want to send to Software Heritage for archiving</p>
+          <p>Students and professors can view and search all projects and edit theirs projects.</p>
         </mat-card-content>
       </mat-card>
       <mat-card>
@@ -35,7 +35,7 @@
           <mat-icon mat-card-avatar>star</mat-icon>
         </mat-card-header>
         <mat-card-content>
-          <p>Professors can chose what projects they want to send to Software Heritage for archiving</p>
+          <p>Professors and Students can rate projects according to their preferences.</p>
         </mat-card-content>
       </mat-card>
       <mat-card>
@@ -44,7 +44,7 @@
           <mat-icon mat-card-avatar>archive</mat-icon>
         </mat-card-header>
         <mat-card-content>
-          <p>Professors can chose what projects they want to send to Software Heritage for archiving</p>
+          <p>Professors can chose what projects they want to send to Software Heritage for archiving.</p>
         </mat-card-content>
       </mat-card>
       <mat-card>
@@ -53,7 +53,7 @@
           <mat-icon mat-card-avatar>download</mat-icon>
         </mat-card-header>
         <mat-card-content>
-          <p>Professors can chose what projects they want to send to Software Heritage for archiving</p>
+          <p>Professors and students can download projects that were archived to Software Heritage.</p>
         </mat-card-content>
       </mat-card>
     </div>

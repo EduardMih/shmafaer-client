@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           console.log(data.jwtToken)
           this.authTokenService.saveUserData(data)
 
-          this.router.navigate(["/adminDashboard"])
+          this.router.navigate(["/home"])
         },
         error: err => {
           //console.log(err)
