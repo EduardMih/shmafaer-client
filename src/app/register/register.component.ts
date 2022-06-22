@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(newUser).subscribe({
       next:data => {
         this.isSuccessful = true;
-        this.successMessage = `Congratulations ${data.firstname} ${data.lastname}! Your account was successfully created!`;
+        this.successMessage = `Congratulations ${data.firstname} ${data.lastname}! Your account was successfully created! Check your email for confirmation!`;
       },
       error: err => {
         //console.log("aici")

@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         },
         error: err => {
           //console.log(err)
-          if((err.status == 401) && (err.error.Error == "Bad credentials"))
+          if((err.status == 401) && ((err.error.Error == "Bad credentials") || (err.error.Error == "Email was not confirmed")))
             this.isSuccessful = false;
 
           else
