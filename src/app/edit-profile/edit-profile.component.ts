@@ -122,6 +122,7 @@ export class EditProfileComponent implements OnInit {
         this.isSuccessful = true;
         this.successMessage = "Password changed successfully"
         console.log(value);
+        this.authTokenService.logout();
         this.router.navigate(['/login'])
       },
       error: err => {
