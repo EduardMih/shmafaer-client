@@ -1,4 +1,8 @@
-# ShmafaerClient
+# Software Heritage Middleware Applied For Academic Research - client
+
+A client web application created in Angular for managing projects inside faculty, allowing users (students and professors) to create, edit, rate, receive recommendations and archive projects by communicating through HTTP calls with Software Heritage Middleware Applied For Academic Research Rest Web API (https://github.com/EduardMih/shmafaer-server).
+
+---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
